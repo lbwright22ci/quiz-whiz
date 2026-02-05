@@ -1,0 +1,19 @@
+/* Font downloaded from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+/*Variables*/
+:root {
+    --primary-font: 'Nunito', sans-serif;
+    --heading-font: 'DynaPuff', sans-serif;
+    --tuscan-sun: #f3bd31ff;
+    --alice-blue: #edf5fdff;
+    --lavender-veil: #e7d9e7ff;
+    --bright-marine: #0e6fbeff;
+    --egyptian-blue: #0f38a9ff;
+    --deep-navy: #01164eff;
+}
+
+/* Generic style rules*/
+html{
+    font-size:10px;
+}
