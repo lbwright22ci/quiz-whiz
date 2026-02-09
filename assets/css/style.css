@@ -31,10 +31,17 @@ h1,
 h2,
 h3{
     font-family: var(--heading-font);
+    color: var(--background-color);
 }
 
+.hidden-text{
+    visibility: hidden;
+    font-size: 0;
+}
 
 /* buttons*/
+
+
 
 /* nav bar*/
 .navbar,
@@ -43,7 +50,9 @@ h3{
     background-color: var(--secondary-highlight);
     /*font-weight: bold;*/
     font-family: var(--heading-font), sans-serif;
+    height:5.6rem;
 }
+
 
 .navbar a,
 .footer a{
@@ -57,8 +66,37 @@ h3{
 
 /*landing page*/
 #hero{
-    padding: 4rem ;
+    padding: 0 ;
     color: var(--background-color);
+    text-align: center;
+}
+
+#hero .display-1{
+    font-size:5.5rem;
+}
+
+#hero .lead{
+    font-size: 2rem;
+}
+
+#hero-logo{
+    width: 85vw;
+    max-width: 40vh;
+}
+
+.hero-subtitle{
+    padding-left:12.5vw;
+    padding-right:12.5vw;
+    text-align: center;
+}
+
+.reasons-images{
+    width:75vw;
+    max-width: 40vh;
+    border-radius: 5vw;
+    padding-left:12.5vw;
+    padding-right:12.5vw;
+    text-align: center;
 }
 
 /* game play page*/
