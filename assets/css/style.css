@@ -40,7 +40,14 @@ h3{
 }
 
 /* buttons*/
-
+.btn-lg{
+    background-color: var(--highlight-color);
+    color:var(--text-color);
+    font-family: var(--heading-font), sans-serif;
+    font-size: 3rem;
+    padding-left:40px;
+    padding-right:40px;
+}
 
 
 /* nav bar*/
@@ -79,16 +86,11 @@ h3{
     font-size: 2rem;
 }
 
-#hero-logo{
+#hero-logo img{
     width: 85vw;
     max-width: 40vh;
 }
 
-.hero-subtitle{
-    padding-left:12.5vw;
-    padding-right:12.5vw;
-    text-align: center;
-}
 
 .reasons-images{
     width:75vw;
@@ -116,6 +118,17 @@ h3{
 
 /* Large screens 992px and above: laptops*/
 @media screen and (min-width:992px) {
+    #hero .display-1{
+        text-align: start;
+        font-size: 7rem;
+    }
+    #hero-logo{
+        text-align: end;
+    }
+
+    #hero .lead{
+        font-size: 3.5rem;
+    }
 }
 
 /* Extra large screens: 1200 px and above (laptop)*/
