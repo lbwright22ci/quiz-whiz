@@ -5,15 +5,68 @@
 :root {
     --primary-font: 'Nunito', sans-serif;
     --heading-font: 'DynaPuff', sans-serif;
-    --tuscan-sun: #f3bd31ff;
-    --alice-blue: #edf5fdff;
-    --lavender-veil: #e7d9e7ff;
-    --bright-marine: #0e6fbeff;
-    --egyptian-blue: #0f38a9ff;
-    --deep-navy: #01164eff;
+    --highlight-color: #f3bd31ff; /* tuscan sun*/
+    --background-color: #edf5fdff; /* alice blue*/
+    --secondary-background: #e7d9e7ff; /* lavender veil*/
+    --secondary-highlight: #0e6fbeff; /* bright marine*/
+    --secondary-text: #0f38a9ff; /* eyptian blue*/
+    --text-color: #01164eff; /* deep navy*/
 }
 
 /* Generic style rules*/
 html{
     font-size:10px;
+}
+
+body{
+    font-family: var(--primary-font);
+    color: var(--text-color);
+    font-size: 1rem;
+    margin-top: 2rem;
+}
+
+h1, 
+h2,
+h3{
+    font-family: var(--heading-font);
+}
+
+
+/* buttons*/
+
+/* nav bar*/
+#logo #navbar{
+    height: 4rem;
+}
+
+/*footer*/
+
+/*landing page*/
+
+/* game play page*/
+
+/* facts page*/
+
+/* Responsive Styling */
+
+/* Older style small phones which are less than 620px tall short phones */ 
+/* Also applies to landscape orientation of all phones */
+@media  screen and (max-height:620px) {
+}
+
+/* Medium screens: tablets (768px and above)*/
+@media screen and (min-width:768px) {
+}
+
+/* Large screens 992px and above: laptops*/
+@media screen and (min-width:992px) {
+}
+
+/* Extra large screens: 1200 px and above (laptop)*/
+@media screen and (min-width:1200px) {
+
+}
+
+/* Extra extra large screens: 1400 px and above (wide screen laptop and desktop computer screens*/
+@media screen and (min-width:1400px) {
 }
