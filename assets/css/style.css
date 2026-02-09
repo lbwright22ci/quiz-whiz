@@ -22,7 +22,9 @@ body{
     font-family: var(--primary-font);
     color: var(--text-color);
     font-size: 1rem;
-    margin-top: 2rem;
+    margin-top: 5.7rem;
+    background: url("../images/background-image.webp") no-repeat center center/cover fixed;
+    min-height: 100vh;
 }
 
 h1, 
@@ -35,13 +37,29 @@ h3{
 /* buttons*/
 
 /* nav bar*/
-#logo #navbar{
-    height: 4rem;
+.navbar,
+.footer{
+    font-size: 3rem;
+    background-color: var(--secondary-highlight);
+    /*font-weight: bold;*/
+    font-family: var(--heading-font), sans-serif;
 }
 
+.navbar a,
+.footer a{
+        color: var(--background-color);
+}
+
+.navbar #logo{
+    max-height: 4rem;
+}
 /*footer*/
 
 /*landing page*/
+#hero{
+    padding: 4rem ;
+    color: var(--background-color);
+}
 
 /* game play page*/
 
