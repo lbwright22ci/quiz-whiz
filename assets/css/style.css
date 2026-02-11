@@ -22,7 +22,7 @@ body{
     font-family: var(--primary-font);
     color: var(--text-color);
     font-size: 1rem;
-    margin-top: 5.7rem;
+    margin-top: 6.1rem;
     background: url("../images/background-image.webp") no-repeat center center/cover fixed;
     min-height: 90vh;
 }
@@ -49,6 +49,10 @@ h3{
     padding-right:40px;
 }
 
+.btn-lg:hover{
+    background-color: var(--text-color);
+    color:var(--background-color);
+}
 
 /* nav bar*/
 .navbar .container-fluid{
@@ -59,21 +63,33 @@ h3{
 .footer{
     font-size: 3rem;
     background-color: var(--secondary-highlight);
-    /*font-weight: bold;*/
     font-family: var(--heading-font), sans-serif;
-    height:5.6rem;
+    height:6.1rem;
+}
+
+.navbar{
+    box-shadow: 0 0.5rem 0.5rem var(--background-color);
+}
+
+.footer{
+    box-shadow: 0 0.5rem 0.5rem var(--background-color) inset;
 }
 
 .navbar a,
 .footer a{
         color: var(--background-color);
+}
 
-    }
+.navbar a:hover,
+.footer a:hover{
+        color: var(--highlight-color);
+}
 
 .navbar #logo{
     padding-left:4rem;
     max-height: 4rem;
 }
+
 .navbar-collapse {
     background-color: var(--secondary-highlight);
     align-items: flex-start;
@@ -83,11 +99,12 @@ h3{
 /*footer*/
 
 .footer .fa-brands{
-    padding:1rem;
+    padding:1.5rem;
 }
 
 /*landing page*/
 #hero{
+    padding-top: 2rem;
     padding-bottom: 4rem ;
     color: var(--background-color);
     text-align: center;
@@ -106,14 +123,34 @@ h3{
     width: 85vw;
     max-width: 40vh;
 }
-
-
-.reasons-images{
-    width: 80vw;
-    max-width:30rem;
-    border-radius: 2rem;
-    text-align: center;
+#reasons{
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
 }
+.reasons-images{
+    width: 75vw;
+    height:50vw;
+    max-width:30rem;
+    max-height:20rem;
+    border-radius: 2rem;
+}
+
+#reason-1{
+    background-image: url(../images/different-genre.webp);
+    background-size: cover;
+}
+
+#reason-2{
+    background-image: url(../images/multiple-levels.webp);
+    background-size: cover;
+}
+
+#reason-3{
+    background-image: url(../images/boost-your-brain.webp);
+    background-size: cover;
+}
+
 .reasons-titles{
     font-size: 3rem;
     padding-top:1rem;
