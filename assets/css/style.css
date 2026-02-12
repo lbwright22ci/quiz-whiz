@@ -191,7 +191,16 @@ h3{
     font-weight: bold;
     padding:2rem;
 }
+
+#select-difficulty .form-check .form-check-input{
+    margin-left: -0.5rem;
+    margin-right: 1rem;
 }
+
+#form-options{
+    margin-bottom: 2rem;
+}
+
 /* facts page*/
 
 /* Responsive Styling */

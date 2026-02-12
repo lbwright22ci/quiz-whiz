@@ -63,39 +63,39 @@
         <div>
             <div class="container text-center mt-2 mb-2">
                 <div class="row justify-content-center" >
-                    <div class="col-10 col-lg-8 play-zone">
-                        <form>
-                        <div class="row justify-content-center">
+                    <div class="col-10 play-zone">
+                        <form id="select-difficulty">
+                        <div class="row justify-content-center" id="form-options">
                             <h2 class="hidden-text"> start play</h2>
                             
-                            <p class="lead"> Select your level of difficulty:</p>
-                            <div class = "col-12 col-lg-4 form-check">
-                                <input class="form-check-input" type="radio" name="difficulty" id="easy-level">
+                            <p> Select your level of difficulty:</p>
+                            <div class = "col-12 col-md-7 col-lg-4 form-check text-start">
+                                <input class="form-check-input" type="radio" name="difficulty" id="easy-level" checked>
                                 <label class="form-check-label" for="easy-level">
                                     Easy <i class="fa-solid fa-star"></i>
                                 </label>
                             </div>
-                            <div class = "col-12 col-lg-4 form-check">
+                            <div class = "col-12 col-md-7 col-lg-4 form-check text-start">
                                 <input class="form-check-input" type="radio" name="difficulty" id="easy-level">
                                 <label class="form-check-label" for="easy-level">
                                     Medium <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                                 </label>
                             </div>
-                            <div class = "col-12 col-lg-4 form-check">
+                            <div class = "col-12 col-md-7 col-lg-4 form-check text-start">
                                 <input class="form-check-input" type="radio" name="difficulty" id="easy-level">
                                 <label class="form-check-label" for="easy-level">
-                                    Difficult <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                    Hard <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                                 </label>
                             </div>
+                            </form>
                         </div>
                         <div class="row">
-                            <div class="col-6 justify-content-center">
-                                <button class="btn btn-lg" type="submit"> Play Now!</button>
+                            <div class="col-12 col-md-6 justify-content-center">
+                                <button class="btn btn-lg" id="submit"> Play!</button>
                             </div>
-                            <div class ="col-6">
+                            <div class ="col-12 col-md-6">
                                 <button class="btn btn-lg-more">Instructions</button>
                             </div>
-                            </form>
                         </div>
                         <div id="further-info">
 
