@@ -261,6 +261,22 @@ h3{
     color:var(--secondary-highlight);
 }
 
+.question-zone{
+    display: none;
+}
+
+.question-zone .easy{
+    color : var(--highlight-color);
+}
+
+.question-zone .medium{
+    color:var(--orange-highlight);
+}
+
+.question-zone .hard{
+    color:var(--red-highlight);
+}
+
 /* facts page*/
 
 /* Responsive Styling */

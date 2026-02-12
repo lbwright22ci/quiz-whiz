@@ -62,50 +62,58 @@
     <main>
         <div>
             <div class="container text-center mt-2 mb-2">
-                <div class="row justify-content-center" >
+                <div class="row justify-content-center">
                     <div class="col-10 play-zone">
                         <form id="select-difficulty">
-                        <div class="row justify-content-center" id="form-options">
-                            <h2 class="hidden-text"> start play</h2>
-                            
-                            <p> Select your level of difficulty:</p>
-                            <div class = "col-12 col-md-7 col-lg-4 form-check text-start easy">
-                                <input class="form-check-input" type="radio" name="difficulty" id="easy-level" checked>
-                                <label class="form-check-label" for="easy-level">
-                                    Easy <i class="fa-solid fa-star"></i>
-                                </label>
-                            </div>
-                            <div class = "col-12 col-md-7 col-lg-4 form-check text-start medium">
-                                <input class="form-check-input" type="radio" name="difficulty" id="medium-level">
-                                <label class="form-check-label" for="medium-level">
-                                    Medium <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                                </label>
-                            </div>
-                            <div class = "col-12 col-md-7 col-lg-4 form-check text-start hard">
-                                <input class="form-check-input" type="radio" name="difficulty" id="hard-level">
-                                <label class="form-check-label" for="hard-level">
-                                    Hard <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                                </label>
-                            </div>
-                            </form>
+                            <div class="row justify-content-center" id="form-options">
+                                <h2 class="hidden-text"> start play</h2>
+    
+                                <p> Select your level of difficulty:</p>
+                                <div class="col-12 col-md-7 col-lg-4 form-check text-start easy">
+                                    <input class="form-check-input" type="radio" name="difficulty" id="easy-level" checked>
+                                    <label class="form-check-label" for="easy-level">
+                                        Easy <i class="fa-solid fa-star"></i>
+                                    </label>
+                                </div>
+                                <div class="col-12 col-md-7 col-lg-4 form-check text-start medium">
+                                    <input class="form-check-input" type="radio" name="difficulty" id="medium-level">
+                                    <label class="form-check-label" for="medium-level">
+                                        Medium <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                    </label>
+                                </div>
+                                <div class="col-12 col-md-7 col-lg-4 form-check text-start hard">
+                                    <input class="form-check-input" type="radio" name="difficulty" id="hard-level">
+                                    <label class="form-check-label" for="hard-level">
+                                        Hard <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                            class="fa-solid fa-star"></i>
+                                    </label>
+                                </div>
+                        </form>
+                    </div>
+                    <div class="col-10 question-zone">
+                        <div class="row justify-content-start">
+                            <div class="level col-4" id="display-game-level"></div>
                         </div>
-                        <div class="row align-items-center">
-                            <div class="col-12 col-md-6 justify-content-center">
-                                <button class="btn btn-lg" id="submit"> Play!</button>
-                            </div>
-                            <div class ="col-12 col-md-6">
-                                <button class="btn btn-lg btn-information" id="info">Instructions</button>
-                            </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-12 col-md-6 justify-content-center">
+                            <button class="btn btn-lg" id="submit"> Play!</button>
                         </div>
-                        <div class="row" id="further-info">
-                            <div class="col-12">
-                                <ul>
-                                <li> <i class="fa-solid fa-scroll"></i> Each round will consist of twelve randomly selected multiple choice questions.</li>
-                                <li> <i class="fa-solid fa-brain"></i> After each question, the correct answer will be revealed.</li>
-                                <li> <i class="fa-regular fa-face-smile-wink"></i> By random guess work, you can score 4 out of 12</li>
+                        <div class="col-12 col-md-6">
+                            <button class="btn btn-lg btn-information" id="info">Instructions</button>
+                        </div>
+                    </div>
+                    <div class="row" id="further-info">
+                        <div class="col-12">
+                            <ul>
+                                <li> <i class="fa-solid fa-scroll"></i> Each round will consist of twelve randomly selected
+                                    multiple choice questions.</li>
+                                <li> <i class="fa-solid fa-brain"></i> After each question, the correct answer will be
+                                    revealed.</li>
+                                <li> <i class="fa-regular fa-face-smile-wink"></i> By random guess work, you can score 4 out
+                                    of 12</li>
                                 <li> <i class="fa-solid fa-clover"></i> Good Luck!</li>
-                                </ul>
-                            </div>
+                            </ul>
                         </div>
                     </div>
                 </div>
