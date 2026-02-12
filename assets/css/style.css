@@ -243,6 +243,24 @@ h3{
     color:var(--red-highlight);
 }
 
+#further-info{
+    display:none;
+    padding-top: 3rem;
+    padding-bottom:3rem;
+    font-size: 2rem;
+    padding-left: 2rem;
+    padding-right:2rem;
+    text-align: start;
+}
+
+#further-info ul{
+    list-style-type: none;
+}
+
+#further-info ul:hover{
+    color:var(--secondary-highlight);
+}
+
 /* facts page*/
 
 /* Responsive Styling */
