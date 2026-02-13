@@ -1,26 +1,44 @@
 document.addEventListener("DOMContentLoaded", function(){   
-    const API_URL='https://quizmania-api.p.rapidapi.com/trivia-by-difficulty?difficulty=';
-    const difficulty=["easy", "medium", "difficult"];
-    // const URL_medium= 'https://quizmania-api.p.rapidapi.com/trivia-by-difficulty?difficulty=medium';
-    // const URL_difficult='https://quizmania-api.p.rapidapi.com/trivia-by-difficulty?difficulty=difficult'; 
-
-    // const apiKey ="cc512b1b45msh8fd6c5c28a9e6c9p1554b0jsn16ca0f94870"
-    // const host ="quizmania-api.p.rapidapi.com";
+    const urlStart="https://opentdb.com/api.php?amount=1&difficulty=";
+    const urlEnd="&type=multiple";
+    const difficulty=["easy", "medium", "hard"];
 
     // add in a game object here
+    let game={
+        qNumber:0,
+        correctAnswers:0,
+        sessionToken:"",
+    };
+
+    let question={
+        qText:"",
+        possibleAnswers:[],
+        correctAnswer:"",
+        correctAnswerId:100,
+        category:"",
+    };
 
     document.getElementById("submit").addEventListener("click", e => startGame(e));
     document.getElementById("info").addEventListener("click", e => toggleInstructions(e));
 
 
-});
-
 function startGame(e){
+
+    clearGameOject();
+
     let gameUrl = setGameUrl();
 
     document.getElementById("form-options").style.display = "none";
     document.getElementById("submit").style.display= "none";
     document.getElementsByClassName("question-zone")[0].style.display="block";
+
+   // while(game.qNumber<13){
+        createQuestion(gameUrl);
+        // displayQuestion();
+        // checkAnswer();
+        // displayFeedback();
+        // qNumber +=1;
+    //}
 }
 
 function toggleInstructions(e){
@@ -32,9 +50,14 @@ function toggleInstructions(e){
     }
 }
 
+function clearGameOject(){
+    game.qNumber=0;
+    game.pastIdNumbers=[];
+    game.correctAnswers=0;
+}
+
 function setGameUrl(){
-    const API_URL='https://quizmania-api.p.rapidapi.com/trivia-by-difficulty?difficulty=';
-    const difficulty=["easy", "medium", "difficult"];
+
     let levels = document.getElementsByName("difficulty");
     let difficultyLevel =0;
 
@@ -43,9 +66,12 @@ function setGameUrl(){
             difficultyLevel = i;
         }
     }
+
+    getTokenForGame();
+    console.log(game.sessionToken);
     displayDifficulty(difficultyLevel);
-    let gameUrl = `${API_URL}${difficulty[difficultyLevel]}`;
-    console.log(gameUrl);
+    let gameUrl = `${urlStart}${difficulty[difficultyLevel]}${urlEnd}&token=${game.sessionToken}`;
+ //   console.log(gameUrl);
     return gameUrl;
 }
 
@@ -67,5 +93,48 @@ function displayDifficulty(difficultyLevel){
     }else{
         throw(`Difficulty Level ${difficultyLevel} not known`);
     }
+}
+
+async function createQuestion(gameUrl){
+    clearQuestion();
+
+    const response = await fetch(gameUrl);
+    const result = await response.json();
+
+    console.log(result.response_code);
+    game.qNumber =game.qNumber + 1;
+
+    if(result.response_code ===0){
+        console.log(`no errors for generating question ${game.qNumber}`);
+    }else{
+        alert(`Response code is ${result.response_code} for generating question ${game.qNumber}`);
+    }
+}
+
+
+function clearQuestion(){
+    question.qText="";
+    question.possibleAnswers=[];
+    question.correctAnswer="";
+    question.correctAnswerId=100;
+    question.category="";
+}
+
+async function getTokenForGame(){
+    const tokenRequest="https://opentdb.com/api_token.php?command=request";
+
+    const response = await fetch(tokenRequest);
+    const result = await response.json();
+    
+    if(result.response_code ===0){
+        console.log(`no errors for token request, response message was ${result.response_message}`);
+    }else{
+        alert(`Response code is ${result.response_code} for token request, response message was ${result.response_message}`);
+    }
+
+    console.log(`Game token is ${result.token} in get token for game function`);
+    game.sessionToken= result.token;
 
 }
+
+});
