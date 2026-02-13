@@ -11,11 +11,9 @@ document.addEventListener("DOMContentLoaded", function(){
     };
 
     let question={
-        qText:"",
         possibleAnswers:[],
         correctAnswer:"",
         correctAnswerId:100,
-        category:"",
     };
 
     document.getElementById("submit").addEventListener("click", e => startGame(e));
@@ -109,6 +107,8 @@ async function createQuestion(gameUrl){
     }else{
         alert(`Response code is ${result.response_code} for generating question ${game.qNumber}`);
     }
+
+    displayQuestion(result);
 }
 
 
@@ -134,6 +134,26 @@ async function getTokenForGame(){
 
     console.log(`Game token is ${result.token} in get token for game function`);
     game.sessionToken= result.token;
+
+}
+
+function displayQuestion(result){
+    document.getElementById("question-number").innerText = game.qNumber;
+    document.getElementById("question").innerText= result.question;
+    document.getElementById("category").innerText = result.category; 
+    
+    question.correctAnswerId = Math.floor(Math.random()*4);
+
+    let indexIncorrect =0;
+
+    for( i=0; i<4; i++){
+        if(i===question.correctAnswerId){
+            question.possibleAnswers[i]= result.correct_answer;
+        }else{
+            question.possibleAnswers[i]=result.incorrect_answer[indexIncorrect];
+            indexIncorrect= indexIncorrect+1;
+        }
+    }
 
 }
 
