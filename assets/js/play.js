@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function(){   
-    const urlStart="https://opentdb.com/api.php?amount=1&difficulty=";
+    const urlStart="https://opentdb.com/api.php?amount=1&category=9&difficulty=";
     const urlEnd="&type=multiple";
     const difficulty=["easy", "medium", "hard"];
 
@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function(){
         correctAnswers:0,
         sessionToken:"",
         passedQuestions:0,
+        url:"",
     };
 
     let question={
@@ -70,9 +71,8 @@ function setGameUrl(){
     getTokenForGame();
    // console.log(game.sessionToken);
     displayDifficulty(difficultyLevel);
-    let gameUrl = `${urlStart}${difficulty[difficultyLevel]}${urlEnd}&token=${game.sessionToken}`;
+    game.url = `${urlStart}${difficulty[difficultyLevel]}${urlEnd}&token=${game.sessionToken}`;
  //   console.log(gameUrl);
-    return gameUrl;
 }
 
 function displayDifficulty(difficultyLevel){
@@ -95,12 +95,12 @@ function displayDifficulty(difficultyLevel){
     }
 }
 
-async function createQuestion(gameUrl){
+async function createQuestion(){
     clearQuestion();
     document.getElementById("submit-answer").style.display="block";
     document.getElementById("next-question").style.display="none";
 
-    const response = await fetch(gameUrl);
+    const response = await fetch(game.url);
     const result = await response.json();
 
     console.log(result.results[0].question);
@@ -151,8 +151,8 @@ async function getTokenForGame(){
 
 function displayQuestion(result){
     document.getElementById("question-number").innerText = game.qNumber;
-    document.getElementById("question").innerText= result.results[0].question;
-    document.getElementById("category").innerText = result.results[0].category; 
+    document.getElementById("question").innerHTML= result.results[0].question;
+    document.getElementById("category").innerHTML = result.results[0].category; 
 
     question.correctAnswerId = Math.floor(Math.random()*4);
     question.correctAnswer = result.results[0].correct_answer;
@@ -169,7 +169,7 @@ function displayQuestion(result){
             indexIncorrect= indexIncorrect+1;
         }
         let tempId = `${bulletId}${i}`;
-        document.getElementById(tempId).innerText = question.possibleAnswers[i]; 
+        document.getElementById(tempId).innerHTML = question.possibleAnswers[i]; 
     }
 
 //    console.log(question.possibleAnswers);
@@ -191,17 +191,39 @@ function collectUserAnswer(){
 
         question.userAnswerId = userOption;
     }
-
-    })
-
     document.getElementById("submit-answer").style.display="none";
+    document.getElementsByClassName("question-options").style.display="none";
+    displayFeedback();
     if(game.qNumber!==12){
         document.getElementById("next-question").style.display="block";
     }
+})
+
+
+
 }
 
 function displayFeedback(){
+    document.getElementById("correct-answer-revealed").style.display="block";
+    let feedback="";
+    if(question.userAnswerId === question.correctAnswerId){
+        feedback = `Well done!  You got the answer correct!  
+        The answer is ${question.correctAnswer}`;
+        game.correctAnswers= game.correctAnswers+1;
+    }else if(question.userAnswerId ===200){
+        feedback =`You should have taken a guess at the answer!  The answer is  ${question.correctAnswer}`;
+        game.passedQuestions = game.passedQuestions+1;
+    }else{
+        feedback=`Sorry, you picked the wrong answer!
+        You selected ${question.possibleAnswers[question.userAnswerId]} but the answer was ${question.correctAnswer}`;
+    }
+    document.getElementById("correct-answer-revealed").innerHTML = feedback;
 
+    if(game.qNumber ===12){
+        alert("end game");
+    }else{
+        createQuestion();
+    }
 
 }
 
