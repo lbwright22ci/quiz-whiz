@@ -8,12 +8,14 @@ document.addEventListener("DOMContentLoaded", function(){
         qNumber:0,
         correctAnswers:0,
         sessionToken:"",
+        passedQuestions:0,
     };
 
     let question={
         possibleAnswers:[],
         correctAnswer:"",
         correctAnswerId:100,
+        userAnswerId:200,
     };
 
     document.getElementById("submit").addEventListener("click", e => startGame(e));
@@ -29,12 +31,12 @@ function startGame(e){
     document.getElementById("form-options").style.display = "none";
     document.getElementById("submit").style.display= "none";
     document.getElementsByClassName("question-zone")[0].style.display="block";
+    document.getElementById("next-question").style.display="none";
 
    // while(game.qNumber<13){
         createQuestion(gameUrl);
-        // displayQuestion();
-        // checkAnswer();
-        // displayFeedback();
+        collectUserAnswer();
+        displayFeedback();
         // qNumber +=1;
     //}
 }
@@ -66,7 +68,7 @@ function setGameUrl(){
     }
 
     getTokenForGame();
-    console.log(game.sessionToken);
+   // console.log(game.sessionToken);
     displayDifficulty(difficultyLevel);
     let gameUrl = `${urlStart}${difficulty[difficultyLevel]}${urlEnd}&token=${game.sessionToken}`;
  //   console.log(gameUrl);
@@ -75,7 +77,7 @@ function setGameUrl(){
 
 function displayDifficulty(difficultyLevel){
     const starIcon='<i class="fa-solid fa-star"></i>';
-    let displayIcon;
+
     if(difficultyLevel===0){
         difficultyLevel=`Easy ${starIcon}`;
         document.getElementById("display-game-level").innerHTML= difficultyLevel;
@@ -95,15 +97,21 @@ function displayDifficulty(difficultyLevel){
 
 async function createQuestion(gameUrl){
     clearQuestion();
+    document.getElementById("submit-answer").style.display="block";
+    document.getElementById("next-question").style.display="none";
 
     const response = await fetch(gameUrl);
     const result = await response.json();
 
-    console.log(result.response_code);
+    console.log(result.results[0].question);
+    console.log(result.results[0].incorrect_answers);
     game.qNumber =game.qNumber + 1;
 
     if(result.response_code ===0){
         console.log(`no errors for generating question ${game.qNumber}`);
+    }else if(result.response_code ===3 || result.response_code ===4){
+        console.log('problen with token for game. Reset token');
+        setGameUrl();
     }else{
         alert(`Response code is ${result.response_code} for generating question ${game.qNumber}`);
     }
@@ -118,9 +126,13 @@ function clearQuestion(){
     question.correctAnswer="";
     question.correctAnswerId=100;
     question.category="";
+    question.userAnswerId=200;
 }
 
 async function getTokenForGame(){
+
+    game.sessionToken ="";
+
     const tokenRequest="https://opentdb.com/api_token.php?command=request";
 
     const response = await fetch(tokenRequest);
@@ -132,28 +144,64 @@ async function getTokenForGame(){
         alert(`Response code is ${result.response_code} for token request, response message was ${result.response_message}`);
     }
 
-    console.log(`Game token is ${result.token} in get token for game function`);
+//    console.log(`Game token is ${result.token} in get token for game function`);
     game.sessionToken= result.token;
 
 }
 
 function displayQuestion(result){
     document.getElementById("question-number").innerText = game.qNumber;
-    document.getElementById("question").innerText= result.question;
-    document.getElementById("category").innerText = result.category; 
-    
+    document.getElementById("question").innerText= result.results[0].question;
+    document.getElementById("category").innerText = result.results[0].category; 
+
     question.correctAnswerId = Math.floor(Math.random()*4);
+    question.correctAnswer = result.results[0].correct_answer;
 
     let indexIncorrect =0;
+    let bulletId="possible";
 
-    for( i=0; i<4; i++){
+    for(let i=0; i<4; i++){
         if(i===question.correctAnswerId){
-            question.possibleAnswers[i]= result.correct_answer;
+            question.possibleAnswers[i]= result.results[0].correct_answer;
+
         }else{
-            question.possibleAnswers[i]=result.incorrect_answer[indexIncorrect];
+            question.possibleAnswers[i]=result.results[0].incorrect_answers[indexIncorrect];
             indexIncorrect= indexIncorrect+1;
         }
+        let tempId = `${bulletId}${i}`;
+        document.getElementById(tempId).innerText = question.possibleAnswers[i]; 
     }
+
+//    console.log(question.possibleAnswers);
+//    console.log(question.possibleAnswers[question.correctAnswerId]);
+//    console.log(result.results[0].correct_answer);
+
+}
+
+function collectUserAnswer(){
+    document.getElementById("submit-answer").addEventListener("click", e =>{
+
+        let options = document.getElementsByName("possible-answer");
+        let userOption =100;
+
+       for (let i=0; i<3; i++){
+        if(options[i].checked ===true){
+            userOption = i;
+        }
+
+        question.userAnswerId = userOption;
+    }
+
+    })
+
+    document.getElementById("submit-answer").style.display="none";
+    if(game.qNumber!==12){
+        document.getElementById("next-question").style.display="block";
+    }
+}
+
+function displayFeedback(){
+
 
 }
 
