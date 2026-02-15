@@ -1,7 +1,8 @@
 document.addEventListener("DOMContentLoaded", function(){   
-    const urlStart="https://opentdb.com/api.php?amount=1&category=9&difficulty=";
+    const urlStart="https://opentdb.com/api.php?amount=12&category=9&difficulty=";
     const urlEnd="&type=multiple";
     const difficulty=["easy", "medium", "hard"];
+
 
     // add in a game object here
     let game={
@@ -10,14 +11,18 @@ document.addEventListener("DOMContentLoaded", function(){
         sessionToken:"",
         passedQuestions:0,
         url:"",
+        question:{
+            qText:[],
+            wrong1:[],
+            wrong2:[],
+            wrong3:[],
+            correctAnswer:[],
+            category:[],
+            correctAnswerId:[],
+            userAnswerId:[],
+        },
     };
 
-    let question={
-        possibleAnswers:[],
-        correctAnswer:"",
-        correctAnswerId:100,
-        userAnswerId:200,
-    };
 
     document.getElementById("submit").addEventListener("click", e => startGame(e));
     document.getElementById("info").addEventListener("click", e => toggleInstructions(e));
@@ -27,27 +32,27 @@ function startGame(e){
 
     clearGameOject();
 
-    let gameUrl = setGameUrl();
+    setGameUrl();
 
-    document.getElementById("form-options").style.display = "none";
-    document.getElementById("submit").style.display= "none";
-    document.getElementsByClassName("question-zone")[0].style.display="block";
-    document.getElementById("next-question").style.display="none";
+    document.getElementById("form-options").classList.add("hide");
+    document.getElementById("submit").classList.add("hide");
 
-   // while(game.qNumber<13){
-        createQuestion(gameUrl);
+    document.getElementsByClassName("question-zone")[0].classList.remove("hide");
+    document.getElementById("next-question").classList.add("hide");
+
+        createQuiz();
+        displayQuestion();
         collectUserAnswer();
         displayFeedback();
-        // qNumber +=1;
-    //}
+        //displayOverallResults();
 }
 
 function toggleInstructions(e){
     var playInfo = document.getElementById("further-info");
-    if(playInfo.style.display ==="none"){
-        playInfo.style.display = "block";
+    if(playInfo.classList.contains("hide")){
+        playInfo.classList.remove("hide");
     }else{
-        playInfo.style.display = "none";
+        playInfo.classList.add("hide");
     }
 }
 
@@ -55,6 +60,17 @@ function clearGameOject(){
     game.qNumber=0;
     game.pastIdNumbers=[];
     game.correctAnswers=0;
+    game.question.qText=[];
+    game.question.correctAnswer=[];
+    game.question.wrong1=[];
+    game.question.wrong2=[];
+    game.question.wrong3=[];
+    game.question.category=[];
+
+    for(let i=1; i<12; i++){
+        game.question.correctAnswerId[i]= 100;
+        game.question.userAnswerId[i]=200;
+    }
 }
 
 function setGameUrl(){
@@ -69,10 +85,10 @@ function setGameUrl(){
     }
 
     getTokenForGame();
-   // console.log(game.sessionToken);
+
     displayDifficulty(difficultyLevel);
     game.url = `${urlStart}${difficulty[difficultyLevel]}${urlEnd}&token=${game.sessionToken}`;
- //   console.log(gameUrl);
+
 }
 
 function displayDifficulty(difficultyLevel){
@@ -95,39 +111,36 @@ function displayDifficulty(difficultyLevel){
     }
 }
 
-async function createQuestion(){
-    clearQuestion();
-    document.getElementById("submit-answer").style.display="block";
-    document.getElementById("next-question").style.display="none";
+async function createQuiz(){
+
+    document.getElementById("submit-answer").classList.remove("hide");
+    document.getElementById("next-question").classList.add("hide");
 
     const response = await fetch(game.url);
     const result = await response.json();
 
-    console.log(result.results[0].question);
-    console.log(result.results[0].incorrect_answers);
-    game.qNumber =game.qNumber + 1;
+    for(let i=1; i<12; i++){
+        game.question.qText[i]= result.results[i].question;
+        console.log(result.results[i].question);
+        console.log(game.question.qText[i]);
+        game.question.correctAnswer[i]=result.results[i].correct_answer;
+        game.question.wrong1[i]=result.results[i].incorrect_answers[0];
+        game.question.wrong2[i]=result.results[i].incorrect_answers[1];
+        game.question.wrong3[i]=result.results[i].incorrect_answers[2];
+        game.question.category[i] = result.results[i].category;
+    }
 
     if(result.response_code ===0){
         console.log(`no errors for generating question ${game.qNumber}`);
     }else if(result.response_code ===3 || result.response_code ===4){
-        console.log('problen with token for game. Reset token');
+        console.log('problem with token for game. Reset token');
         setGameUrl();
     }else{
         alert(`Response code is ${result.response_code} for generating question ${game.qNumber}`);
     }
 
-    displayQuestion(result);
 }
 
-
-function clearQuestion(){
-    question.qText="";
-    question.possibleAnswers=[];
-    question.correctAnswer="";
-    question.correctAnswerId=100;
-    question.category="";
-    question.userAnswerId=200;
-}
 
 async function getTokenForGame(){
 
@@ -149,32 +162,33 @@ async function getTokenForGame(){
 
 }
 
-function displayQuestion(result){
-    document.getElementById("question-number").innerText = game.qNumber;
-    document.getElementById("question").innerHTML= result.results[0].question;
-    document.getElementById("category").innerHTML = result.results[0].category; 
+function displayQuestion(){
+    document.getElementById("question-number").innerText = game.qNumber+1;
+    document.getElementById("question").innerHTML= game.question.qText[(game.qNumber)];
+    document.getElementById("category").innerHTML = game.question.category[(game.qNumber)];
 
-    question.correctAnswerId = Math.floor(Math.random()*4);
-    question.correctAnswer = result.results[0].correct_answer;
+    game.question.correctAnswerId[(game.qNumber)] = Math.floor(Math.random()*4);
 
     let indexIncorrect =0;
     let bulletId="possible";
 
     for(let i=0; i<4; i++){
-        if(i===question.correctAnswerId){
-            question.possibleAnswers[i]= result.results[0].correct_answer;
-
-        }else{
-            question.possibleAnswers[i]=result.results[0].incorrect_answers[indexIncorrect];
-            indexIncorrect= indexIncorrect+1;
-        }
         let tempId = `${bulletId}${i}`;
-        document.getElementById(tempId).innerHTML = question.possibleAnswers[i]; 
-    }
-
-//    console.log(question.possibleAnswers);
-//    console.log(question.possibleAnswers[question.correctAnswerId]);
-//    console.log(result.results[0].correct_answer);
+        if(i===game.question.correctAnswerId[(game.qNumber)]){
+            document.getElementById(tempId).innerHTML = game.question.correctAnswer[game.qNumber]; 
+        }else if(indexIncorrect === 0){
+            document.getElementById(tempId).innerHTML = game.question.wrong1[game.qNumber];
+            indexIncorrect = indexIncorrect +1;
+        }else if(indexIncorrect === 1){
+            document.getElementById(tempId).innerHTML = game.question.wrong2[game.qNumber];
+            indexIncorrect = indexIncorrect +1;
+        }else if(indexIncorrect === 2){
+            document.getElementById(tempId).innerHTML = game.question.wrong3[game.qNumber];
+            indexIncorrect = indexIncorrect +1;
+        }else{
+            alert("there is an error assigning options for this question");
+        }
+        }
 
 }
 
@@ -191,20 +205,19 @@ function collectUserAnswer(){
 
         question.userAnswerId = userOption;
     }
-    document.getElementById("submit-answer").style.display="none";
-    document.getElementsByClassName("question-options").style.display="none";
+    document.getElementById("submit-answer").classList.add("hide");
+    document.getElementsByClassName("question-options").classList.add("hide");
+
     displayFeedback();
     if(game.qNumber!==12){
-        document.getElementById("next-question").style.display="block";
+        document.getElementById("next-question").classList.remove("hide");
     }
 })
-
-
 
 }
 
 function displayFeedback(){
-    document.getElementById("correct-answer-revealed").style.display="block";
+    document.getElementById("correct-answer-revealed").classList.remove("hide");
     let feedback="";
     if(question.userAnswerId === question.correctAnswerId){
         feedback = `Well done!  You got the answer correct!  
@@ -219,10 +232,12 @@ function displayFeedback(){
     }
     document.getElementById("correct-answer-revealed").innerHTML = feedback;
 
+    game.qNumber = game.qNumber+1;
+
     if(game.qNumber ===12){
         alert("end game");
     }else{
-        createQuestion();
+        displayQuestion();
     }
 
 }

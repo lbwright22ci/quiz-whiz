@@ -37,9 +37,14 @@ h3{
 }
 
 .hidden-text{
-    visibility: hidden;
+    visibility:hidden;
     font-size: 0;
 }
+
+.hide{
+    display: none;
+}
+
 
 /* buttons*/
 .btn-lg{
