@@ -170,32 +170,37 @@ function collectUserAnswer(e){
 function displayFeedback(){
 
     document.getElementById("correct-answer-revealed").classList.remove("hide");
-    
+    document.getElementsByClassName("question-options")[0].classList.add("hide");
+
+    if(game.qNumber===0){
+        document.getElementById("current-score-update").classList.remove("hide");
+    }
+
     if(game.qNumber!==12){
         document.getElementById("next-question").classList.remove("hide");
     }
 
     let feedback="";
+
     
     if(game.question.userAnswerId[game.qNumber] === game.question.correctAnswerId[game.qNumber]){
         game.correctAnswers= game.correctAnswers+1;
-        feedback = `Well done!  You got the answer correct!  
-        The answer is ${game.question.correctAnswer[game.qNumber]}
-        Your current score is ${game.correctAnswers} out of ${game.qNumber+1}`;
+        feedback = `<i class="fa-regular fa-face-smile"></i> Well done!  You got the answer correct!  
+        <span class="correct-answer">The answer is ${game.question.correctAnswer[game.qNumber]}</span>`;
 
     }else if(game.question.userAnswerId[game.qNumber] ===200){
-        feedback =`You should have taken a guess at the answer!  The answer is  ${game.question.correctAnswer[game.qNumber]}`;
+        feedback =`You should have taken a guess at the answer!  
+        <span class="correct-answer">The answer is  ${game.question.correctAnswer[game.qNumber]}</span>`;
         game.passedQuestions = game.passedQuestions+1;
     }else{
-        feedback=`Sorry, you picked the wrong answer!
-        The correct answer was ${game.question.correctAnswer[game.qNumber]}
-        Your current score is ${game.correctAnswers} out of ${game.qNumber+1}`;
+        feedback=`<i class="fa-regular fa-face-frown"></i> Sorry, you picked the wrong answer!
+        <span class="correct-answer">The correct answer was ${game.question.correctAnswer[game.qNumber]}</span>`;
     }
     
     console.log(`${game.qNumber} the feedback is ${feedback}`);
 
     document.getElementById("correct-answer-revealed").innerHTML = feedback;
-
+    document.getElementById("current-score-update").innerHTML = `Current score is: ${game.correctAnswers}/ ${game.qNumber+1}`;
 
    //     document.getElementById("next-question").addEventListener("click", e => setNextQ(e));
 }
@@ -206,6 +211,7 @@ function setNextQ(e){
         document.getElementById("submit-answer").classList.remove("hide");
         document.getElementById("next-question").classList.add("hide");
         document.getElementById("correct-answer-revealed").classList.add("hide");
+        document.getElementsByClassName("question-options")[0].classList.remove("hide");
         for(let i=0; i<4; i++){
             document.getElementsByName("possible-answer")[i].checked=false;
             }

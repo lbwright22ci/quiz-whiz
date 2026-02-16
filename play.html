@@ -101,7 +101,7 @@
                             <div class="col-12" id="question"></div>
                         </div>
                         <form class="question-options">
-                        <div class="row">
+                        <div class="row align-items-center">
                             <div class="col-12 col-md-6 form-check">
                                 <input class="form-check-input" type="radio" name="possible-answer" id="answer1" required>
                                 <label class="form-check-label" for="answer1" id="possible0"></label>
@@ -120,20 +120,24 @@
                             </div>
                         </div>
                         </form>
-                        <div class="row">
+                        <div class="row text-center">
+                            <div class="col-12">
                             <button class="btn btn-lg" id="submit-answer"> Answer</button>
+                            </div>
                         </div>
                         
-                        <div class="row correct-answer">
+                        <div class="row text-center">
                             <div class="col-12 hide" id="correct-answer-revealed"></div>
-                            <div class="col-12">
+                            <div class="col-12 justify-content-center">
                                 <button class="btn btn-lg hide" id="next-question"> Next</button>
                             </div>
+                            
                         </div>
                     </div>
                     <div class="row align-items-center">
                         <div class="col-12 col-md-6 justify-content-center">
                             <button class="btn btn-lg" id="submit"> Play!</button>
+                            <div class="col-12 hide" id="current-score-update"></div>
                         </div>
                         <div class="col-12 col-md-6">
                             <button class="btn btn-lg btn-information" id="info">Instructions</button>

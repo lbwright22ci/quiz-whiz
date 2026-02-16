@@ -291,6 +291,22 @@ h3{
     color:var(--text-color);
 }
 
+.correct-answer{
+    color:var(--red-highlight);
+}
+
+#current-score-update{
+    font-size: 2rem;
+    color:var(--secondary-highlight);
+}
+
+#submit-answer,
+#next-question{
+    margin-top:4rem;
+    margin-bottom:4rem;
+}
+
+
 #further-info{
     padding-top: 3rem;
     padding-bottom:3rem;
