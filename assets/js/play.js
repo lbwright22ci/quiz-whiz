@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function(){   
-    const urlStart="https://opentdb.com/api.php?amount=12&category=9&difficulty=";
+    const urlStart="https://opentdb.com/api.php?amount=12&difficulty=";
     const urlEnd="&type=multiple";
     const difficulty=["easy", "medium", "hard"];
 
@@ -145,15 +145,16 @@ function collectUserAnswer(e){
     document.getElementById("submit-answer").classList.add("hide");
     
     let options = document.getElementsByName("possible-answer");
-        let userOption =100;
+        let userOption =200;
 
-       for (let i=0; i<4; i++){
+       for (let i=0; i<5; i++){
         
         if(options[i].checked ===true){
             userOption = i;
         }
     }
     game.question.userAnswerId[game.qNumber] = userOption;
+    console.log(userOption);
 
     displayFeedback();
 
@@ -188,7 +189,7 @@ function displayFeedback(){
         feedback = `<i class="fa-regular fa-face-smile"></i> Well done!  You got the answer correct!  
         <span class="correct-answer">The answer is ${game.question.correctAnswer[game.qNumber]}</span>`;
 
-    }else if(game.question.userAnswerId[game.qNumber] ===200){
+    }else if(game.question.userAnswerId[game.qNumber] ===4){
         feedback =`You should have taken a guess at the answer!  
         <span class="correct-answer">The answer is  ${game.question.correctAnswer[game.qNumber]}</span>`;
         game.passedQuestions = game.passedQuestions+1;
@@ -212,9 +213,10 @@ function setNextQ(e){
         document.getElementById("next-question").classList.add("hide");
         document.getElementById("correct-answer-revealed").classList.add("hide");
         document.getElementsByClassName("question-options")[0].classList.remove("hide");
-        for(let i=0; i<4; i++){
+        for(let i=0; i<5; i++){
             document.getElementsByName("possible-answer")[i].checked=false;
             }
+            document.getElementsByName("possible-answer")[4].checked=true;
         displayQuestion();
         }
 
