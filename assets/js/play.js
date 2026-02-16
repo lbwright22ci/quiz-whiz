@@ -24,6 +24,8 @@ document.addEventListener("DOMContentLoaded", function(){
 
     document.getElementById("submit").addEventListener("click", e => startGame(e));
     document.getElementById("info").addEventListener("click", e => toggleInstructions(e));
+    document.getElementById("submit-answer").addEventListener("click", e => collectUserAnswer(e));
+    document.getElementById("next-question").addEventListener("click", e => setNext(e));
 
 function startGame(e){
 
@@ -136,58 +138,65 @@ function displayQuestion(){
         }
         }
 
-        collectUserAnswer();
-
 }
 
-function collectUserAnswer(){
-    document.getElementById("submit-answer").addEventListener("click", e =>{
+function collectUserAnswer(e){
 
-        let options = document.getElementsByName("possible-answer");
+    document.getElementById("submit-answer").classList.add("hide");
+    
+    let options = document.getElementsByName("possible-answer");
         let userOption =100;
 
-       for (let i=0; i<3; i++){
+       for (let i=0; i<4; i++){
         if(options[i].checked ===true){
             userOption = i;
         }
-
-        question.userAnswerId = userOption;
     }
-    document.getElementById("submit-answer").classList.add("hide");
-    document.getElementsByClassName("question-options").classList.add("hide");
+    game.question.userAnswerId[game.qNumber] = userOption;
 
     displayFeedback();
-    if(game.qNumber!==12){
-        document.getElementById("next-question").classList.remove("hide");
-    }
-})
- displayFeedback();
 }
 
 function displayFeedback(){
+
     document.getElementById("correct-answer-revealed").classList.remove("hide");
+    
+    if(game.qNumber!==12){
+        document.getElementById("next-question").classList.remove("hide");
+    }
+
     let feedback="";
-    if(question.userAnswerId === question.correctAnswerId){
-        feedback = `Well done!  You got the answer correct!  
-        The answer is ${question.correctAnswer}`;
+    
+    if(game.question.userAnswerId[game.qNumber] === game.question.correctAnswerId[game.qNumber]){
         game.correctAnswers= game.correctAnswers+1;
-    }else if(question.userAnswerId ===200){
-        feedback =`You should have taken a guess at the answer!  The answer is  ${question.correctAnswer}`;
+        feedback = `Well done!  You got the answer correct!  
+        The answer is ${game.question.correctAnswer[game.qNumber]}
+        Your current score is ${game.correctAnswers} out of ${game.qNumber+1}`;
+
+    }else if(game.question.userAnswerId[game.qNumber] ===200){
+        feedback =`You should have taken a guess at the answer!  The answer is  ${game.question.correctAnswer[game.qNumber]}`;
         game.passedQuestions = game.passedQuestions+1;
     }else{
         feedback=`Sorry, you picked the wrong answer!
-        You selected ${question.possibleAnswers[question.userAnswerId]} but the answer was ${question.correctAnswer}`;
+        The correct answer was ${game.question.correctAnswer[game.qNumber]}
+        Your current score is ${game.correctAnswers} out of ${game.qNumber+1}`;
     }
+    
     document.getElementById("correct-answer-revealed").innerHTML = feedback;
+}
+
+function setNext(e){
 
     game.qNumber = game.qNumber+1;
 
     if(game.qNumber ===12){
         alert("end game");
     }else{
+        document.getElementById("submit-answer").classList.remove("hide");
+        document.getElementById("next-question").classList.add("hide");
+        document.getElementById("correct-answer-revealed").classList.add("hide");    
         displayQuestion();
     }
-
 }
 
 function toggleInstructions(e){
