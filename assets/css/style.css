@@ -259,6 +259,38 @@ h3{
     color:var(--red-highlight);
 }
 
+.question-options .form-check-input:checked{
+    background-color: var(--text-color);
+    border-color:var(--text-color);
+}
+
+.question-zone{
+    font-size: 2rem;
+    text-align: left;
+}
+
+
+#question,
+.question-options{
+    padding-top:1rem;
+    padding-bottom:1rem;
+    font-size: 2.5rem;
+}
+
+.question-options{
+    margin-left:2rem;
+}
+.question-options .form-check-label{
+    color: var(--secondary-highlight);
+}
+.question-options .form-check-label:hover{
+    color: var(--text-color);
+}
+
+.question-options .form-check-label:checked{
+    color:var(--text-color);
+}
+
 #further-info{
     padding-top: 3rem;
     padding-bottom:3rem;

@@ -110,7 +110,7 @@ async function createQuiz(){
 
 function displayQuestion(){
 
-    document.getElementById("question-number").innerText = game.qNumber+1;
+    document.getElementById("question-number").innerText = `${game.qNumber+1}`;
 
     document.getElementById("question").innerHTML= game.question.qText[(game.qNumber)];
     document.getElementById("category").innerHTML = game.question.category[(game.qNumber)];
@@ -148,6 +148,7 @@ function collectUserAnswer(e){
         let userOption =100;
 
        for (let i=0; i<4; i++){
+        
         if(options[i].checked ===true){
             userOption = i;
         }
@@ -161,9 +162,6 @@ function collectUserAnswer(e){
     if(game.qNumber ===12){
         alert("end game");
     }else{
-        // document.getElementById("submit-answer").classList.remove("hide");
-        // document.getElementById("next-question").classList.add("hide");
-        // document.getElementById("correct-answer-revealed").classList.add("hide");
         document.getElementById("next-question").addEventListener("click", e => setNextQ(e));
     }
 
