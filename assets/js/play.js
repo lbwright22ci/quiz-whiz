@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", function(){
     const urlEnd="&type=multiple";
     const difficulty=["easy", "medium", "hard"];
 
-
     // add in a game object here
     let game={
         qNumber:0,
@@ -23,10 +22,8 @@ document.addEventListener("DOMContentLoaded", function(){
         },
     };
 
-
     document.getElementById("submit").addEventListener("click", e => startGame(e));
     document.getElementById("info").addEventListener("click", e => toggleInstructions(e));
-
 
 function startGame(e){
 
@@ -38,23 +35,11 @@ function startGame(e){
     document.getElementById("submit").classList.add("hide");
 
     document.getElementsByClassName("question-zone")[0].classList.remove("hide");
-    document.getElementById("next-question").classList.add("hide");
 
         createQuiz();
-        displayQuestion();
-        collectUserAnswer();
-        displayFeedback();
         //displayOverallResults();
 }
 
-function toggleInstructions(e){
-    var playInfo = document.getElementById("further-info");
-    if(playInfo.classList.contains("hide")){
-        playInfo.classList.remove("hide");
-    }else{
-        playInfo.classList.add("hide");
-    }
-}
 
 function clearGameOject(){
     game.qNumber=0;
@@ -91,26 +76,6 @@ function setGameUrl(){
 
 }
 
-function displayDifficulty(difficultyLevel){
-    const starIcon='<i class="fa-solid fa-star"></i>';
-
-    if(difficultyLevel===0){
-        difficultyLevel=`Easy ${starIcon}`;
-        document.getElementById("display-game-level").innerHTML= difficultyLevel;
-        document.getElementById("display-game-level").classList.add("easy");
-    }else if(difficultyLevel===1){
-        difficultyLevel=`Medium ${starIcon} ${starIcon}`;
-        document.getElementById("display-game-level").innerHTML= difficultyLevel;
-        document.getElementById("display-game-level").classList.add("medium");
-    }else if(difficultyLevel===2){
-        difficultyLevel=`Hard ${starIcon} ${starIcon} ${starIcon}`;
-        document.getElementById("display-game-level").innerHTML= difficultyLevel;
-        document.getElementById("display-game-level").classList.add("hard");
-    }else{
-        throw(`Difficulty Level ${difficultyLevel} not known`);
-    }
-}
-
 async function createQuiz(){
 
     document.getElementById("submit-answer").classList.remove("hide");
@@ -119,10 +84,8 @@ async function createQuiz(){
     const response = await fetch(game.url);
     const result = await response.json();
 
-    for(let i=1; i<12; i++){
+    for(let i=0; i<12; i++){
         game.question.qText[i]= result.results[i].question;
-        console.log(result.results[i].question);
-        console.log(game.question.qText[i]);
         game.question.correctAnswer[i]=result.results[i].correct_answer;
         game.question.wrong1[i]=result.results[i].incorrect_answers[0];
         game.question.wrong2[i]=result.results[i].incorrect_answers[1];
@@ -139,31 +102,14 @@ async function createQuiz(){
         alert(`Response code is ${result.response_code} for generating question ${game.qNumber}`);
     }
 
-}
-
-
-async function getTokenForGame(){
-
-    game.sessionToken ="";
-
-    const tokenRequest="https://opentdb.com/api_token.php?command=request";
-
-    const response = await fetch(tokenRequest);
-    const result = await response.json();
-    
-    if(result.response_code ===0){
-        console.log(`no errors for token request, response message was ${result.response_message}`);
-    }else{
-        alert(`Response code is ${result.response_code} for token request, response message was ${result.response_message}`);
-    }
-
-//    console.log(`Game token is ${result.token} in get token for game function`);
-    game.sessionToken= result.token;
+    displayQuestion();
 
 }
 
 function displayQuestion(){
+
     document.getElementById("question-number").innerText = game.qNumber+1;
+
     document.getElementById("question").innerHTML= game.question.qText[(game.qNumber)];
     document.getElementById("category").innerHTML = game.question.category[(game.qNumber)];
 
@@ -190,6 +136,8 @@ function displayQuestion(){
         }
         }
 
+        collectUserAnswer();
+
 }
 
 function collectUserAnswer(){
@@ -213,7 +161,7 @@ function collectUserAnswer(){
         document.getElementById("next-question").classList.remove("hide");
     }
 })
-
+ displayFeedback();
 }
 
 function displayFeedback(){
@@ -241,5 +189,55 @@ function displayFeedback(){
     }
 
 }
+
+function toggleInstructions(e){
+    var playInfo = document.getElementById("further-info");
+    if(playInfo.classList.contains("hide")){
+        playInfo.classList.remove("hide");
+    }else{
+        playInfo.classList.add("hide");
+    }
+}
+
+function displayDifficulty(difficultyLevel){
+    const starIcon='<i class="fa-solid fa-star"></i>';
+
+    if(difficultyLevel===0){
+        difficultyLevel=`Easy ${starIcon}`;
+        document.getElementById("display-game-level").innerHTML= difficultyLevel;
+        document.getElementById("display-game-level").classList.add("easy");
+    }else if(difficultyLevel===1){
+        difficultyLevel=`Medium ${starIcon} ${starIcon}`;
+        document.getElementById("display-game-level").innerHTML= difficultyLevel;
+        document.getElementById("display-game-level").classList.add("medium");
+    }else if(difficultyLevel===2){
+        difficultyLevel=`Hard ${starIcon} ${starIcon} ${starIcon}`;
+        document.getElementById("display-game-level").innerHTML= difficultyLevel;
+        document.getElementById("display-game-level").classList.add("hard");
+    }else{
+        throw(`Difficulty Level ${difficultyLevel} not known`);
+    }
+}
+
+
+async function getTokenForGame(){
+
+    game.sessionToken ="";
+
+    const tokenRequest="https://opentdb.com/api_token.php?command=request";
+
+    const response = await fetch(tokenRequest);
+    const result = await response.json();
+    
+    if(result.response_code ===0){
+        console.log(`no errors for token request, response message was ${result.response_message}`);
+    }else{
+        alert(`Response code is ${result.response_code} for token request, response message was ${result.response_message}`);
+    }
+
+    game.sessionToken= result.token;
+
+}
+
 
 });

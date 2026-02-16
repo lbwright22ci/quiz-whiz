@@ -45,6 +45,17 @@ h3{
     display: none;
 }
 
+.easy{
+    color : var(--highlight-color);
+}
+
+.medium{
+    color:var(--orange-highlight);
+}
+
+.hard{
+    color:var(--red-highlight);
+}
 
 /* buttons*/
 .btn-lg{
@@ -224,27 +235,27 @@ h3{
     border-color:var(--text-color);
 }
 
-#form-options .easy .fa-star{
+#easy-label .fa-star{
     color: var(--highlight-color);
 }
 
-#form-options .easy .form-check-label:hover{
+#easy-label:hover{
     color:var(--highlight-color);
 }
 
-#form-options .medium .fa-star{
+#medium-label .fa-star{
     color: var(--orange-highlight);
-}
+} 
 
-#form-options .medium .form-check-label:hover{
+#medium-label:hover{
     color:var(--orange-highlight);
 }
 
-#form-options .hard .fa-star{
+#hard-label .fa-star{
     color:var(--red-highlight);
-}
+} 
 
-#form-options .hard .form-check-label:hover{
+#hard-label:hover{
     color:var(--red-highlight);
 }
 
@@ -266,21 +277,7 @@ h3{
     color:var(--secondary-highlight);
 }
 
-.question-zone{
-    display: none;
-}
 
-.question-zone .easy{
-    color : var(--highlight-color);
-}
-
-.question-zone .medium{
-    color:var(--orange-highlight);
-}
-
-.question-zone .hard{
-    color:var(--red-highlight);
-}
 
 /* facts page*/
 
