@@ -24,8 +24,8 @@ document.addEventListener("DOMContentLoaded", function(){
 
     document.getElementById("submit").addEventListener("click", e => startGame(e));
     document.getElementById("info").addEventListener("click", e => toggleInstructions(e));
-    document.getElementById("submit-answer").addEventListener("click", e => collectUserAnswer(e));
-    document.getElementById("next-question").addEventListener("click", e => setNext(e));
+    document.getElementById("submit-answer").addEventListener("click", event => collectUserAnswer(event));
+
 
 function startGame(e){
 
@@ -96,12 +96,12 @@ async function createQuiz(){
     }
 
     if(result.response_code ===0){
-        console.log(`no errors for generating question ${game.qNumber}`);
+        console.log(`no errors for generating questions`);
     }else if(result.response_code ===3 || result.response_code ===4){
         console.log('problem with token for game. Reset token');
         setGameUrl();
     }else{
-        alert(`Response code is ${result.response_code} for generating question ${game.qNumber}`);
+        alert(`Response code is ${result.response_code} for generating question set`);
     }
 
     displayQuestion();
@@ -155,6 +155,18 @@ function collectUserAnswer(e){
     game.question.userAnswerId[game.qNumber] = userOption;
 
     displayFeedback();
+
+        game.qNumber = game.qNumber+1;
+
+    if(game.qNumber ===12){
+        alert("end game");
+    }else{
+        // document.getElementById("submit-answer").classList.remove("hide");
+        // document.getElementById("next-question").classList.add("hide");
+        // document.getElementById("correct-answer-revealed").classList.add("hide");
+        document.getElementById("next-question").addEventListener("click", e => setNextQ(e));
+    }
+
 }
 
 function displayFeedback(){
@@ -182,22 +194,25 @@ function displayFeedback(){
         Your current score is ${game.correctAnswers} out of ${game.qNumber+1}`;
     }
     
+    console.log(`${game.qNumber} the feedback is ${feedback}`);
+
     document.getElementById("correct-answer-revealed").innerHTML = feedback;
+
+
+   //     document.getElementById("next-question").addEventListener("click", e => setNextQ(e));
 }
 
-function setNext(e){
-
-    game.qNumber = game.qNumber+1;
-
-    if(game.qNumber ===12){
-        alert("end game");
-    }else{
+function setNextQ(e){
+    console.log("enters setNextQ");
+    
         document.getElementById("submit-answer").classList.remove("hide");
         document.getElementById("next-question").classList.add("hide");
-        document.getElementById("correct-answer-revealed").classList.add("hide");    
+        document.getElementById("correct-answer-revealed").classList.add("hide");
+        for(let i=0; i<4; i++){
+            document.getElementsByName("possible-answer")[i].checked=false;
+            }
         displayQuestion();
-    }
-}
+        }
 
 function toggleInstructions(e){
     var playInfo = document.getElementById("further-info");
