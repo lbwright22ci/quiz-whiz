@@ -161,8 +161,9 @@ function collectUserAnswer(e){
 
         game.qNumber = game.qNumber+1;
 
-    if(game.qNumber ===12){
+    if(game.qNumber ===1){
         alert("end game");
+        endGame();
     }else{
         document.getElementById("next-question").addEventListener("click", e => setNextQ(e));
     }
@@ -220,6 +221,28 @@ function setNextQ(e){
             document.getElementsByName("possible-answer")[4].checked=true;
         displayQuestion();
         }
+
+function endGame(){
+    document.getElementsByClassName("play-zone")[0].classList.add("hide");
+    document.getElementById("end-game-feedback").classList.remove("hide");
+
+    document.getElementById("final-score").innerHTML=` Your final score was ${game.correctAnswers}/12.
+                                    You passed ${game.passedQuestions} questions.`;
+
+    if(game.correctAnswers <4){
+        document.getElementById("feedback-image").innerHTML='<img src="./assets/img/.." alt="image of brain with wooden spoon, crying">';
+        document.getElementById("feedback-comment").innerHTML='Oh dear!  You could have done better by guess work alone!  Time to start knuckling down and studying to improve your general knowledge';
+    }else if(game.correctAnswers>=4 || game.correctAnswers <7){
+        document.getElementById("feedback-image").innerHTML='<img src="./assets/img/.." alt="image of brain studying">';
+        document.getElementById("feedback-comment").innerHTML='Did you guess or did you know the answers?  Either way, room for improvement!';
+    }else if(game.correctAnswers>=7 || game.correctAnswers <10){
+        document.getElementById("feedback-image").innerHTML='<img src="./assets/img/.." alt="image of brain with pile of books to read">';
+        document.getElementById("feedback-comment").innerHTML="You've definitely got talent!  Hit the books and you'll be a pro in no time!";
+    }else{
+        document.getElementById("feedback-image").innerHTML='<img src="./assets/img/.." alt="image of brain with trophey, happy">';
+        document.getElementById("feedback-comment").innerHTML='Genius!!!  Enter the next pub quiz immediately and impress your friends!';
+    }
+}
 
 function toggleInstructions(e){
     var playInfo = document.getElementById("further-info");
