@@ -47,6 +47,7 @@ function clearGameOject(){
     game.qNumber=0;
     game.pastIdNumbers=[];
     game.correctAnswers=0;
+    game.passedQuestions=0;
     game.question.qText=[];
     game.question.correctAnswer=[];
     game.question.wrong1=[];
@@ -110,10 +111,10 @@ async function createQuiz(){
 
 function displayQuestion(){
 
-    document.getElementById("question-number").innerText = `${game.qNumber+1}`;
+    document.getElementById("question-number").innerText = `Question ${game.qNumber+1}`;
 
-    document.getElementById("question").innerHTML= game.question.qText[(game.qNumber)];
-    document.getElementById("category").innerHTML = game.question.category[(game.qNumber)];
+    document.getElementById("question").innerHTML= `${game.question.qText[(game.qNumber)]}`;
+    document.getElementById("category").innerHTML = `Genre: ${game.question.category[(game.qNumber)]}`;
 
     game.question.correctAnswerId[(game.qNumber)] = Math.floor(Math.random()*4);
 
@@ -190,8 +191,8 @@ function displayFeedback(){
         <span class="correct-answer">The answer is ${game.question.correctAnswer[game.qNumber]}</span>`;
 
     }else if(game.question.userAnswerId[game.qNumber] ===4){
-        feedback =`You should have taken a guess at the answer!  
-        <span class="correct-answer">The answer is  ${game.question.correctAnswer[game.qNumber]}</span>`;
+        feedback =`<span class="correct-answer">The answer is  ${game.question.correctAnswer[game.qNumber]}</span>
+        <i class="fa-regular fa-face-smile-wink"></i> Why not take a guess at the answer next time?`;
         game.passedQuestions = game.passedQuestions+1;
     }else{
         feedback=`<i class="fa-regular fa-face-frown"></i> Sorry, you picked the wrong answer!
@@ -201,7 +202,7 @@ function displayFeedback(){
     console.log(`${game.qNumber} the feedback is ${feedback}`);
 
     document.getElementById("correct-answer-revealed").innerHTML = feedback;
-    document.getElementById("current-score-update").innerHTML = `Current score is: ${game.correctAnswers}/ ${game.qNumber+1}`;
+    document.getElementById("current-score-update").innerHTML = `Current score is: ${game.correctAnswers}/${game.qNumber+1}`;
 
    //     document.getElementById("next-question").addEventListener("click", e => setNextQ(e));
 }
