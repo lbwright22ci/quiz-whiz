@@ -292,7 +292,7 @@ h3{
 .question-options .form-check-label{
     color: var(--secondary-highlight);
 }
-.question-options .form-check-label:hover{
+.question-options .form-check:hover{
     color: var(--text-color);
 }
 

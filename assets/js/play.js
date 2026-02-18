@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function(){
     document.getElementById("submit").addEventListener("click", e => startGame(e));
     document.getElementById("info").addEventListener("click", e => toggleInstructions(e));
     document.getElementById("submit-answer").addEventListener("click", event => collectUserAnswer(event));
-
+    document.getElementById("category").addEventListener('click', e => displayHint());
 
 function startGame(e){
 
@@ -114,7 +114,7 @@ function displayQuestion(){
     document.getElementById("question-number").innerText = `Question ${game.qNumber+1}`;
 
     document.getElementById("question").innerHTML= `${game.question.qText[(game.qNumber)]}`;
-    document.getElementById("category").innerHTML = `Genre: ${game.question.category[(game.qNumber)]}`;
+    
 
     game.question.correctAnswerId[(game.qNumber)] = Math.floor(Math.random()*4);
 
@@ -143,18 +143,23 @@ function displayQuestion(){
 
 function collectUserAnswer(e){
 
-    document.getElementById("submit-answer").classList.add("hide");
+
     
     let options = document.getElementsByName("possible-answer");
         let userOption =200;
 
-       for (let i=0; i<5; i++){
+       for (let i=0; i<4; i++){
         
         if(options[i].checked ===true){
             userOption = i;
         }
     }
-    game.question.userAnswerId[game.qNumber] = userOption;
+
+    if(userOption===200){
+        alert("Take a guess at the answer! You've got 25% chance of picking the correct one ;-)");
+    }else{
+    document.getElementById("submit-answer").classList.add("hide");
+        game.question.userAnswerId[game.qNumber] = userOption;
     console.log(userOption);
 
     displayFeedback();
@@ -163,11 +168,11 @@ function collectUserAnswer(e){
 
     if(game.qNumber ===1){
         alert("end game");
-        endGame();
+        document.getElementById("next-question").addEventListener("click", e => endGame(e));
     }else{
         document.getElementById("next-question").addEventListener("click", e => setNextQ(e));
     }
-
+    }
 }
 
 function displayFeedback(){
@@ -222,12 +227,12 @@ function setNextQ(e){
         displayQuestion();
         }
 
-function endGame(){
+function endGame(e){
     document.getElementsByClassName("play-zone")[0].classList.add("hide");
     document.getElementById("end-game-feedback").classList.remove("hide");
 
     document.getElementById("final-score").innerHTML=` Your final score was ${game.correctAnswers}/12.
-                                    You passed ${game.passedQuestions} questions.`;
+                                    `;
 
     if(game.correctAnswers <4){
         document.getElementById("feedback-image").innerHTML='<img src="./assets/img/.." alt="image of brain with wooden spoon, crying">';
@@ -293,5 +298,14 @@ async function getTokenForGame(){
 
 }
 
+function displayHint(e){
+    if(!document.getElementsByClassName("question-options")[0].classList.contains("hide")){
+        if(document.getElementById("category").innerText==="Hint"){
+        document.getElementById("category").innerHTML= `Question genre is ${game.question.category[(game.qNumber)]}`;
+    }else{
+        document.getElementById("category").innerHTML= `Hint`;
+    }
+}
 
+}
 });
