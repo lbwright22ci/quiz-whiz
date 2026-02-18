@@ -298,6 +298,12 @@ h3{
     font-size: 2.5rem;
 }
 
+#question-alert{
+    color:var(--orange-highlight);
+    font-size: 2rem;
+    padding-bottom: 1rem;
+}
+
 .question-options{
     margin-left:2rem;
 }

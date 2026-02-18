@@ -260,11 +260,18 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     if (userOption === 200) {
-      alert(
-        "Take a guess at the answer! You've got 25% chance of picking the correct one ;-)",
-      );
+        document.getElementById("question-alert").innerHTML=`Take a guess at the answer!  You've got 25% chance of picking the correct one <i class="fa-regular fa-face-smile-wink"></i>`
+        document.getElementById("question-alert").classList.remove("hide");
+    //     alert(
+    //     "Take a guess at the answer! You've got 25% chance of picking the correct one ;-)",
+    //   );
     } else {
       document.getElementById("submit-answer").classList.add("hide");
+
+      if(!document.getElementById("question-alert").classList.contains("hide")){
+        document.getElementById("question-alert").classList.add("hide");
+      }
+
       game.question.userAnswerId[game.qNumber] = userOption;
 
       displayFeedback();
@@ -272,7 +279,7 @@ document.addEventListener("DOMContentLoaded", function () {
       game.qNumber = game.qNumber + 1;
 
       if (game.qNumber === 12) {
-        alert("This is your final question!");
+        console.log("This is the final question!");
         document
           .getElementById("next-question")
           .addEventListener("click", (e) => endGame(e));
@@ -361,12 +368,12 @@ document.addEventListener("DOMContentLoaded", function () {
         "Oh dear!  You could have done better by guess work alone!  Time to start knuckling down and studying to improve your general knowledge";
     } else if (game.correctAnswers >= 4 || game.correctAnswers < 7) {
       document.getElementById("feedback-image").innerHTML =
-        '<img src="./assets/img/.." alt="image of brain studying">';
+        '<img src="./assets/images/average.webp" alt="image of brain studying">';
       document.getElementById("feedback-comment").innerHTML =
         "Did you guess or did you know the answers?  Either way, room for improvement!";
     } else if (game.correctAnswers >= 7 || game.correctAnswers < 10) {
       document.getElementById("feedback-image").innerHTML =
-        '<img src="./assets/img/.." alt="image of brain with pile of books to read">';
+        '<img src="./assets/images/above-average.webp" alt="image of brain with pile of books to read">';
       document.getElementById("feedback-comment").innerHTML =
         "You've definitely got talent!  Hit the books and you'll be a pro in no time!";
     } else {
