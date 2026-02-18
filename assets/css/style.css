@@ -361,6 +361,7 @@ h3{
     color:var(--secondary-highlight);
     font-size: 2rem;
     margin-bottom: 2rem;
+    margin-top:2rem;
 }
 
 .social-media{
@@ -390,6 +391,12 @@ h3{
     .play-zone .btn-information{
         margin-top: 0;
     }
+    .play-zone{
+        padding:3rem;
+    }
+    .social-media a{
+        font-size:3rem;
+    }
 }
 
 /* Large screens 992px and above: laptops*/
@@ -406,11 +413,33 @@ h3{
     #hero .lead{
         font-size: 3.5rem;
     }
+
+    #play-hero{
+        padding-bottom: 2rem;
+    }
+
+    #submit-answer{
+        margin-top:2rem;
+        margin-bottom:2rem;
+    }
+    .social-media a{
+        font-size: 5rem;
+    }
 }
 
 /* Extra large screens: 1200 px and above (laptop)*/
 @media screen and (min-width:1200px) {
-
+        .question-zone{
+        padding-left:4rem;
+        padding-right:4rem;
+    }
+    #end-game-feedback{
+        padding-left:4rem;
+        padding-right:4rem;
+    }
+    #feedback-comment{
+        margin-top:0;
+    }
 }
 
 /* Extra extra large screens: 1400 px and above (wide screen laptop and desktop computer screens*/
