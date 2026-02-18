@@ -35,9 +35,9 @@ function enterKey(e){
             startGame(e);
         }else if(!document.getElementById("submit-answer").classList.contains("hide") && document.getElementById("next-question").classList.contains("hide")){
             collectUserAnswer(e);
-        }else if(document.getElementById("submit-answer").classList.contains("hide") && !document.getElementById("next-question").classList.contains("hide") && game.qNumber <12){
+        }else if(document.getElementById("submit-answer").classList.contains("hide") && !document.getElementById("next-question").classList.contains("hide") && game.qNumber <1){
             setNextQ(e);
-        }else if(document.getElementById("submit-answer").classList.contains("hide") && !document.getElementById("next-question").classList.contains("hide") && game.qNumber===12){
+        }else if(document.getElementById("submit-answer").classList.contains("hide") && !document.getElementById("next-question").classList.contains("hide") && game.qNumber===1){
             endGame(e);
         }
         }else if(!document.getElementsByClassName("question-options")[0].classList.contains("hide") && e.key ==="ArrowUp"){
@@ -285,7 +285,7 @@ function endGame(e){
                                     `;
 
     if(game.correctAnswers <4){
-        document.getElementById("feedback-image").innerHTML='<img src="./assets/img/.." alt="image of brain with wooden spoon, crying">';
+        document.getElementById("feedback-image").innerHTML='<img src="./assets/images/loser.webp" alt="image of brain with wooden spoon, crying">';
         document.getElementById("feedback-comment").innerHTML='Oh dear!  You could have done better by guess work alone!  Time to start knuckling down and studying to improve your general knowledge';
     }else if(game.correctAnswers>=4 || game.correctAnswers <7){
         document.getElementById("feedback-image").innerHTML='<img src="./assets/img/.." alt="image of brain studying">';
@@ -294,7 +294,7 @@ function endGame(e){
         document.getElementById("feedback-image").innerHTML='<img src="./assets/img/.." alt="image of brain with pile of books to read">';
         document.getElementById("feedback-comment").innerHTML="You've definitely got talent!  Hit the books and you'll be a pro in no time!";
     }else{
-        document.getElementById("feedback-image").innerHTML='<img src="./assets/img/.." alt="image of brain with trophey, happy">';
+        document.getElementById("feedback-image").innerHTML='<img src="./assets/images/winner.webp" alt="image of brain with trophey, happy">';
         document.getElementById("feedback-comment").innerHTML='Genius!!!  Enter the next pub quiz immediately and impress your friends!';
     }
 }

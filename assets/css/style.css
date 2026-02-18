@@ -339,6 +339,10 @@ h3{
     color:var(--secondary-highlight);
 }
 
+#feedback-image img{
+    width:60vw;
+    max-width: 300px;
+}
 
 
 /* facts page*/
