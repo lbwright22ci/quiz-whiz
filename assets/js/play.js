@@ -26,6 +26,58 @@ document.addEventListener("DOMContentLoaded", function(){
     document.getElementById("info").addEventListener("click", e => toggleInstructions(e));
     document.getElementById("submit-answer").addEventListener("click", event => collectUserAnswer(event));
     document.getElementById("category").addEventListener('click', e => displayHint());
+    document.addEventListener("keydown", e => enterKey(e));
+
+function enterKey(e){
+    if(e.key ==="Enter"){
+        e.preventDefault();
+        if(document.getElementsByClassName("question-zone")[0].classList.contains("hide")){
+            startGame(e);
+        }else if(!document.getElementById("submit-answer").classList.contains("hide") && document.getElementById("next-question").classList.contains("hide")){
+            collectUserAnswer(e);
+        }else if(document.getElementById("submit-answer").classList.contains("hide") && !document.getElementById("next-question").classList.contains("hide") && game.qNumber <12){
+            setNextQ(e);
+        }else if(document.getElementById("submit-answer").classList.contains("hide") && !document.getElementById("next-question").classList.contains("hide") && game.qNumber===12){
+            endGame(e);
+        }
+        }else if(!document.getElementsByClassName("question-options")[0].classList.contains("hide") && e.key ==="ArrowUp"){
+            e.preventDefault();
+            let currentChecked = 10;
+            let options=document.getElementsByName("possible-answer");
+
+            for(let i=0; i<5; i++){
+                if(options[i].checked===true){
+                    currentChecked = i;
+                    options[i].checked= false;
+                }
+            }
+
+            if(currentChecked ===0){
+                options[4].checked = true;
+            }else{
+                options[(currentChecked-1)].checked=true;
+            }
+            console.log(currentChecked);
+
+        }else if(!document.getElementsByClassName("question-options")[0].classList.contains("hide") && e.key ==="ArrowDown"){
+            e.preventDefault();
+            let currentChecked = 10;
+            let options=document.getElementsByName("possible-answer");
+
+            for(let i=0; i<5; i++){
+                if(options[i].checked===true){
+                    currentChecked = i;
+                    options[i].checked= false;
+                }
+            }
+            if(currentChecked ===4){
+                options[0].checked = true;
+            }else{
+                options[(currentChecked+1)].checked=true;
+            }
+        }
+
+}
 
 function startGame(e){
 
@@ -143,8 +195,6 @@ function displayQuestion(){
 
 function collectUserAnswer(e){
 
-
-    
     let options = document.getElementsByName("possible-answer");
         let userOption =200;
 

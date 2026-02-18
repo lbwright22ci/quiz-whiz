@@ -292,8 +292,9 @@ h3{
 .question-options .form-check-label{
     color: var(--secondary-highlight);
 }
-.question-options .form-check:hover{
-    color: var(--text-color);
+
+.question-options .form-check-label:checked{
+    color:var(--text-color);
 }
 
 .correct-answer{
