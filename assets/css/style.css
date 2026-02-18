@@ -84,6 +84,18 @@ h3{
     background-color: var(--red-highlight);
 }
 
+.btn-facts{
+    margin-top:2rem;
+    margin-bottom: 2rem;
+    background-color: var(--text-color);
+    color: var(--background-color);
+}
+
+.btn-facts:hover{
+    background-color: var(--orange-highlight);
+    color: var(--text-color);
+}
+
 /* nav bar*/
 .navbar .container-fluid{
     --bs-gutter-x:0;
@@ -344,6 +356,25 @@ h3{
     max-width: 300px;
 }
 
+#feedback-comment{
+    font-style: italic;
+    color:var(--secondary-highlight);
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+.social-media{
+    margin-top:2rem;
+    margin-bottom:2rem;
+}
+.social-media a{
+    color:var(--text-color);
+    font-size: 3rem;
+}
+
+.social-media a:hover{
+    color:var(--orange-highlight);
+}
 
 /* facts page*/
 
