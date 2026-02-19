@@ -48,13 +48,15 @@ function resetJoke(){
 }
 
   async function getRandomFact(e) {
+//    document.getElementsByClassName("facts-page-images")[0].classList.add("hide");
     document.getElementById("random-fact").classList.remove("hide");
+    document.getElementById("fact-placeholder").classList.add("col-12", "justify-content-center");
 
     const response = await fetch(urlRandom);
     const result = await response.json();
 
     document.getElementById("random-fact").innerText = result.text;
-
+    document.getElementById("generate-random").innerText ="New fact!";
     //need to add in error check
   }
 

@@ -41,7 +41,8 @@
                         <a class="nav-link" href="./play.html" aria-label="Takes you to start of the quiz">Play</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./fun-facts.html" aria-label="Takes you to a page with fun facts to learn">Fun
+                        <a class="nav-link" href="./fun-facts.html"
+                            aria-label="Takes you to a page with fun facts to learn">Fun
                             Facts!</a>
                     </li>
                 </ul>
@@ -67,54 +68,59 @@
         <div class="container text-center mt-2 mb-2">
             <div class="row justify-content-center">
                 <div class="col-10">
-                    <div class="row align-items-center">
+                    <div class="row align-items-center justify-content-center facts-container">
+                        <div class="col-12 col-md-6">
+                            <h2 class="facts-page-titles"> Fact of the day!</h2>
+                        </div>
                         <div class="col-12 col-md-6 facts">
-                            <h2> Today's random fact is:</h2>
                             <div id="todays-fact">today's fact</div>
                         </div>
-                        <div class="col-12 col-md-6 facts-page-images">
-                                <img src="assets/images/average.webp" alt="cartoon image of a brain studying">
+                    </div>
+                    <div class="row facts-container">
+                        <div class="col-12 ">
+                            <h2 class="facts-page-titles"> Test your knowledge!</h2>
                         </div>
                     </div>
-                    <div class="row align-items-center">
-                        <div class="col-12 col-md-6 facts">
-                            <h2> Ready to learn some more?</h2>
-                            <div class="hide" id="random-fact">Random fact</div>
-                            <button class="btn btn-facts" id="generate-random">Suprise me!</button>
-                        </div>
-                        <div class="col-12 col-md-6 facts-page-images">
-                        <img src="assets/images/above-average.webp" alt="cartoon image of a brain reading">
-                        </div>
-                    </div>
-                
-                    
-                    <div class="row text-center">
-                        <div class="col-6 facts">
-                            <h2> Test your knowledge!</h2>
-                        </div>
-                    </div>
-                    <div class="row justify-content-center">
-                        <div class="col-4">
+                    <div class="row justify-content-center facts-container">
+                        <div class="col-12">
                             <a class="btn btn-lg" href="./play.html"
                                 aria-label="Takes you to re-start the quiz">Play!</a>
                         </div>
                     </div>
-                            
-                        
-                    <div class="row align-items-center">
+
+                    <div class="row align-items-center justify-content-center facts-container">
                         <div class="col-12 col-md-6">
-                            image here
+                        <div class="facts-page-images">
+                            <img src="assets/images/above-average.webp" alt="cartoon image of a brain reading">
+                        </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <h2 class="facts-page-titles"> Ready to learn some more?</h2>
+                            <button class="btn btn-lg btn-facts" id="generate-random">Suprise me!</button>
+                        </div>
+                        <div id="fact-placeholder">
+                            <div class="hide facts" id="random-fact">Random fact</div>
+                        </div>
+
+                    </div>
+
+                    <div class="row align-items-center facts-container">
+                        <div class="col-12 text-center ">
+                            <h2 class="facts-page-titles"> Just for fun!</h2>
+                        </div>
+                        <div class="col-12 col-md-6 facts-page-images">
+                            <img src="assets/images/average.webp" alt="cartoon image of a brain studying">
                         </div>
                         <div class="col-12 col-md-6 facts">
                             <div id="joke-start">joke </div>
-                            <button class="btn btn-information" id="reveal-punchline"> Tell me!</button>
+                            <button class="btn btn-facts btn-lg" id="reveal-punchline"> Tell me!</button>
                             <div class="hide" id="punch-line">
                                 <div id="punchline-text"></div>
                                 <h2 id="next-joke">Tell me another!</h2>
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
         </div>

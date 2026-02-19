@@ -385,11 +385,38 @@ h3{
 
 /* facts page*/
 
+.facts-page-titles{
+    font-size: 3rem;
+}
+
+.facts-page-titles:hover{
+
+    /* //text-shadow: 1px 1px 5px var(--highlight-color); */
+        color:var(--text-color);
+}
+
+.facts{
+    width: 75vw;
+    max-width:30rem;
+    border-radius: 2rem;
+    background-color: #edf5fdaa;
+    border: 4px solid var(--secondary-highlight);
+    box-shadow: 2rem 2rem 2rem var(--secondary-background) inset;
+    font-size: 2rem;
+    text-align: center;
+    font-weight: bold;
+    padding:2rem;
+}
+
+
+
 .facts-page-images img{
     width:60vw;
     max-width: 300px;
 }
-
+.facts-container{
+    margin-bottom: 4rem;
+}
 /* Responsive Styling */
 
 /* Older style small phones which are less than 620px tall short phones */ 
@@ -407,6 +434,9 @@ h3{
     }
     .social-media a{
         font-size:3rem;
+    }
+    #random-fact{
+        max-width: unset;
     }
 }
 
