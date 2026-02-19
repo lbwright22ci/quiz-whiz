@@ -408,6 +408,12 @@ h3{
     padding:2rem;
 }
 
+.facts:hover{
+    border-color:var(--text-color);
+    color:var(--secondary-highlight);
+    background-color: var(--background-color);
+    box-shadow: 2rem 2rem 2rem var(--highlight-color);
+}
 
 
 .facts-page-images img{
