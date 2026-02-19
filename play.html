@@ -41,7 +41,8 @@
                         <a class="nav-link" href="./play.html" aria-label="Takes you to start of the quiz">Play</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./fun-facts.html" aria-label="Takes you to a page with fun facts to learn">Fun
+                        <a class="nav-link" href="./fun-facts.html"
+                            aria-label="Takes you to a page with fun facts to learn">Fun
                             Facts!</a>
                     </li>
                 </ul>
@@ -67,10 +68,9 @@
         <div class="container text-center mt-2 mb-2">
             <div class="row justify-content-center">
                 <div class="col-10 play-zone">
-                    <form id="select-difficulty">
-                        <div class="row justify-content-center" id="form-options">
+                    <div class="row justify-content-center" id="form-options">
+                        <form id="select-difficulty">
                             <h2 class="hidden-text"> start play</h2>
-
                             <p> Select your level of difficulty:</p>
                             <div class="col-12 col-md-7 col-lg-4 form-check text-start">
                                 <input class="form-check-input" type="radio" name="difficulty" id="easy-level" checked>
@@ -91,74 +91,72 @@
                                         class="fa-solid fa-star "></i>
                                 </label>
                             </div>
-                    </form>
-                </div>
-                <div class="col-12 question-zone hide ">
-                    <div class="row justify-content-start">
-                        <div class="col-12 col-md-4" id="display-game-level"></div>
-                        <div class="col-12"><span id="question-number"></span></div>
-                        <div class="col-12 col-md-8"><span id="category">Hint</span></div>
+                        </form>
                     </div>
-                    <div class="row justify-content-start">
-
-
-                        <div class="col-12" id="question"></div>
-                        <div class="col-12 hide" id="question-alert"></div>
-                    </div>
-                    <form class="question-options">
-                        <div class="row">
-                            <div class="col-12 col-md-6 form-check">
-                                <input class="form-check-input" type="radio" name="possible-answer" id="answer1"
-                                    required>
-                                <label class="form-check-label" for="answer1" id="possible0"></label>
-                            </div>
-                            <div class="col-12 col-md-6 form-check">
-                                <input class="form-check-input" type="radio" name="possible-answer" id="answer2"
-                                    required>
-                                <label class="form-check-label" for="answer2" id="possible1"></label>
-                            </div>
+                    <div class="col-12 question-zone hide ">
+                        <div class="row justify-content-start">
+                            <div class="col-12 col-md-4" id="display-game-level"></div>
+                            <div class="col-12"><span id="question-number"></span></div>
+                            <div class="col-12 col-md-8"><span id="category">Hint</span></div>
                         </div>
-                        <div class="row">
-                            <div class="col-12 col-md-6 form-check">
-                                <input class="form-check-input" type="radio" name="possible-answer" id="answer3"
-                                    required>
-                                <label class="form-check-label" for="answer3" id="possible2"></label>
-                            </div>
-                            <div class="col-12 col-md-6  form-check">
-                                <input class="form-check-input" type="radio" name="possible-answer" id="answer4"
-                                    required>
-                                <label class="form-check-label" for="answer4" id="possible3"></label>
-                            </div>
+                        <div class="row justify-content-start">
+                            <div class="col-12" id="question"></div>
+                            <div class="col-12 hide" id="question-alert"></div>
                         </div>
-                        <div class="row justify-content-end">
-                            <div class="col-12 col-md-6  form-check">
-                                <input class="form-check-input" type="radio" name="possible-answer" id="answer5" checked
-                                    required>
-                                <label class="form-check-label" for="answer5">I don't know!</label>
+                        <form class="question-options">
+                            <div class="row">
+                                <div class="col-12 col-md-6 form-check">
+                                    <input class="form-check-input" type="radio" name="possible-answer" id="answer1"
+                                        required>
+                                    <label class="form-check-label" for="answer1" id="possible0"></label>
+                                </div>
+                                <div class="col-12 col-md-6 form-check">
+                                    <input class="form-check-input" type="radio" name="possible-answer" id="answer2"
+                                        required>
+                                    <label class="form-check-label" for="answer2" id="possible1"></label>
+                                </div>
                             </div>
-                        </div>
-                    </form>
-                    <div class="row text-center">
-                        <div class="col-12">
-                            <button class="btn btn-lg" id="submit-answer"> Answer</button>
-                        </div>
-                    </div>
-
-                    <div class="row text-center">
-                        <div class="col-12 hide" id="correct-answer-revealed"></div>
-                        <div class="col-12 justify-content-center">
-                            <button class="btn btn-lg hide" id="next-question"> Next</button>
+                            <div class="row">
+                                <div class="col-12 col-md-6 form-check">
+                                    <input class="form-check-input" type="radio" name="possible-answer" id="answer3"
+                                        required>
+                                    <label class="form-check-label" for="answer3" id="possible2"></label>
+                                </div>
+                                <div class="col-12 col-md-6  form-check">
+                                    <input class="form-check-input" type="radio" name="possible-answer" id="answer4"
+                                        required>
+                                    <label class="form-check-label" for="answer4" id="possible3"></label>
+                                </div>
+                            </div>
+                            <div class="row justify-content-end">
+                                <div class="col-12 col-md-6  form-check">
+                                    <input class="form-check-input" type="radio" name="possible-answer" id="answer5"
+                                        checked required>
+                                    <label class="form-check-label" for="answer5">I don't know!</label>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="row text-center">
+                            <div class="col-12">
+                                <button class="btn btn-lg" id="submit-answer"> Answer</button>
+                            </div>
                         </div>
 
+                        <div class="row text-center">
+                            <div class="col-12 hide" id="correct-answer-revealed"></div>
+                            <div class="col-12 justify-content-center">
+                                <button class="btn btn-lg hide" id="next-question"> Next</button>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="row align-items-center">
-                    <div class="col-12 col-md-6 justify-content-center">
-                        <button class="btn btn-lg" id="submit"> Play!</button>
-                        <div class="col-12 hide" id="current-score-update"></div>
-                    </div>
-                    <div class="col-12 col-md-6">
-                        <button class="btn btn-lg btn-information" id="info">Instructions</button>
+                    <div class="row align-items-center">
+                        <div class="col-12 col-md-6 justify-content-center">
+                            <button class="btn btn-lg" id="submit"> Play!</button>
+                            <div class="col-12 hide" id="current-score-update"></div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <button class="btn btn-lg btn-information" id="info">Instructions</button>
+                        </div>
                     </div>
                     <div class="row hide" id="further-info">
                         <div class="col-12">
@@ -189,25 +187,25 @@
                     </div>
                     <div class="row justify-content-center">
                         <div class="col-12" id="feedback-comment"></div>
-
-                        <div class="row justify-content-center social-media">
-                            <div class="col-2">
-                                <a href="https://www.instagram.com" target="_blank"
-                                    aria-label="Visit my Instagram page (opens in a new tab)" rel="noopener"><i
-                                        class="fa-brands fa-square-instagram"></i></a>
-                            </div>
-                            <div class="col-2">
-                                <a href="https://www.facebook.com" target="_blank"
-                                    aria-label="Visit my Facebook page (opens in a new tab)" rel="noopener"><i
-                                        class="fa-brands fa-square-facebook"></i></a>
-                            </div>
-                            <div class="col-2">
-                                <a href="https://www.tiktok.com" target="_blank"
-                                    aria-label="Visit my TikTok profile (opens in a new tab)" rel="noopener"><i
-                                        class="fa-brands fa-tiktok"></i></a>
-                            </div>
+                    </div>
+                    <div class="row justify-content-center social-media">
+                        <div class="col-2">
+                            <a href="https://www.instagram.com" target="_blank"
+                                aria-label="Visit my Instagram page (opens in a new tab)" rel="noopener"><i
+                                    class="fa-brands fa-square-instagram"></i></a>
+                        </div>
+                        <div class="col-2">
+                            <a href="https://www.facebook.com" target="_blank"
+                                aria-label="Visit my Facebook page (opens in a new tab)" rel="noopener"><i
+                                    class="fa-brands fa-square-facebook"></i></a>
+                        </div>
+                        <div class="col-2">
+                            <a href="https://www.tiktok.com" target="_blank"
+                                aria-label="Visit my TikTok profile (opens in a new tab)" rel="noopener"><i
+                                    class="fa-brands fa-tiktok"></i></a>
                         </div>
                     </div>
+
 
                     <div class="row align-items-center">
 
