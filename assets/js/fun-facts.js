@@ -61,12 +61,14 @@ function resetJoke(){
   function jokePunchLine(e){
     document.getElementById("punchline-text").innerText = joke.punchLine;
     document.getElementById("punch-line").classList.remove("hide");
+    document.getElementById("reveal-punchline").classList.add("hide");
     document.getElementById("next-joke").addEventListener("click", e => newJoke(e));
   }
 
   function newJoke(e){
     document.getElementById("punch-line").classList.add("hide");
+    document.getElementById("reveal-punchline").classList.remove("hide");
     getJoke();
   }
-  
+
 });

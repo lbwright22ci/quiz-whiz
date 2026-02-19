@@ -385,6 +385,11 @@ h3{
 
 /* facts page*/
 
+.facts-page-images img{
+    width:60vw;
+    max-width: 300px;
+}
+
 /* Responsive Styling */
 
 /* Older style small phones which are less than 620px tall short phones */ 
