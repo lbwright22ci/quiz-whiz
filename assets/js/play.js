@@ -260,7 +260,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     if (userOption === 200) {
-        document.getElementById("question-alert").innerHTML=`Take a guess at the answer!  You've got 25% chance of picking the correct one <i class="fa-regular fa-face-smile-wink"></i>`
+        document.getElementById("question-alert").innerHTML=`Take a guess at the answer!  You've got 25% chance of picking the correct one <i class="fa-regular fa-face-smile-wink"></i>`;
         document.getElementById("question-alert").classList.remove("hide");
     //     alert(
     //     "Take a guess at the answer! You've got 25% chance of picking the correct one ;-)",
