@@ -450,6 +450,13 @@ h3{
     font-weight: bold;
     padding:2rem;
 }
+
+#joke:hover{
+    border-color:var(--text-color);
+    color:var(--secondary-highlight);
+    background-color: var(--background-color);
+    box-shadow: 2rem 2rem 2rem var(--highlight-color);
+}
 /* Responsive Styling */
 
 /* Older style small phones which are less than 620px tall short phones */ 
