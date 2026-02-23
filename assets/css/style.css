@@ -434,6 +434,22 @@ h3{
     color:var(--secondary-highlight);
     text-decoration: underline;
 }
+#joke-container{
+    width: 75vw;
+    max-width:30rem;
+    padding:2rem;
+}
+
+#joke{
+    border-radius: 2rem;
+    background-color: #edf5fdaa;
+    border: 4px solid var(--secondary-highlight);
+    box-shadow: 2rem 2rem 2rem var(--secondary-background) inset;
+    font-size: 2rem;
+    text-align: center;
+    font-weight: bold;
+    padding:2rem;
+}
 /* Responsive Styling */
 
 /* Older style small phones which are less than 620px tall short phones */ 
