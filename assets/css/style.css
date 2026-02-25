@@ -424,6 +424,10 @@ h3{
     margin-bottom: 4rem;
 }
 
+#fact-placeholder{
+    max-width: none;
+}
+
 #next-joke{
     color:var(--red-highlight);
     padding-top: 2rem;

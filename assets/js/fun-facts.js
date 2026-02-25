@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function () {
    * user presses button on the page
    */
   async function getRandomFact(e) {
-    document.getElementById("random-fact").classList.remove("hide");
+    document.getElementById("fact-placeholder").classList.remove("hide");
     document
       .getElementById("fact-placeholder")
       .classList.add("col-12", "justify-content-center");
@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const response = await fetch(urlRandom);
     const result = await response.json();
 
-    document.getElementById("random-fact").innerText = result.text;
+    document.getElementById("fact-placeholder").innerText = result.text;
     document.getElementById("generate-random").innerText = "New fact!";
     //api does not have an error message specifically associated with the API call.
     //However, every fact is associated with an ID.  If this is `null` then the API call has
