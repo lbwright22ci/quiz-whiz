@@ -174,7 +174,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     displayDifficulty(difficultyLevel);
     game.url = `${urlStart}${difficulty[difficultyLevel]}${urlEnd}&token=${game.sessionToken}`;
-  
   }
   /**
    * Collects data from API call to Open Trivia Database
@@ -261,15 +260,18 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     if (userOption === 200) {
-        document.getElementById("question-alert").innerHTML=`Take a guess at the answer!  You've got 25% chance of picking the correct one <i class="fa-regular fa-face-smile-wink"></i>`;
-        document.getElementById("question-alert").classList.remove("hide");
-    //     alert(
-    //     "Take a guess at the answer! You've got 25% chance of picking the correct one ;-)",
-    //   );
+      document.getElementById("question-alert").innerHTML =
+        `Take a guess at the answer!  You've got 25% chance of picking the correct one <i class="fa-regular fa-face-smile-wink"></i>`;
+      document.getElementById("question-alert").classList.remove("hide");
+      //     alert(
+      //     "Take a guess at the answer! You've got 25% chance of picking the correct one ;-)",
+      //   );
     } else {
       document.getElementById("submit-answer").classList.add("hide");
 
-      if(!document.getElementById("question-alert").classList.contains("hide")){
+      if (
+        !document.getElementById("question-alert").classList.contains("hide")
+      ) {
         document.getElementById("question-alert").classList.add("hide");
       }
 

@@ -31,10 +31,9 @@ document.addEventListener("DOMContentLoaded", function () {
     //However, every fact is associated with an ID.  If this is `null` then the API call has
     //hit an error.
 
-    if(result.id === null){
+    if (result.id === null) {
       alert("There is an error in generating today's random fact");
     }
-
   }
 
   todaysFact();
@@ -86,7 +85,7 @@ document.addEventListener("DOMContentLoaded", function () {
     //However, every fact is associated with an ID.  If this is `null` then the API call has
     //hit an error.
 
-    if(result.id === null){
+    if (result.id === null) {
       alert("There is an error in generating a random fact");
     }
   }
