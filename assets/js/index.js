@@ -4,26 +4,19 @@ document.addEventListener("DOMContentLoaded", function(){
     let reasons = document.getElementsByClassName("reasons-images");
 
     for (let j=0; j<3; j++){
-        reasons[j].addEventListener("click", function(){
-            reasons[j].removeAttribute("id");
-            reasons[j].classList.add("reasons-extra");
-            reasons[j].innerText = detailedReason[j];
-            setTimeout( () =>{     
-                reasons[j].setAttribute("id", "reason-"+(j+1));
-                reasons[j].classList.remove("reasons-extra");
-                reasons[j].innerText="";
-            }, 4000);
-        });
-        reasons[j].addEventListener("mouseenter",function(){
-            reasons[j].removeAttribute("id");
-            reasons[j].classList.add("reasons-extra");
-            reasons[j].innerText = detailedReason[j];
-            setTimeout( () =>{     
-                reasons[j].setAttribute("id", "reason-"+(j+1));
-                reasons[j].classList.remove("reasons-extra");
-                reasons[j].innerText="";
-            }, 4000);
-        });
+        reasons[j].addEventListener("click", (e) => revealText(e, j));
+        reasons[j].addEventListener("mouseenter", (e) => revealText(e, j));
     }
+
+    function revealText(e, j){
+            reasons[j].removeAttribute("id");
+            reasons[j].classList.add("reasons-extra");
+            reasons[j].innerText = detailedReason[j];
+            setTimeout( () =>{     
+                reasons[j].setAttribute("id", "reason-"+(j+1));
+                reasons[j].classList.remove("reasons-extra");
+                reasons[j].innerText="";
+            }, 4000);
+        };
 });
 
