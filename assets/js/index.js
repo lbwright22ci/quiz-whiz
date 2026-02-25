@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function(){
     
-    const detailedReason=["Each quiz consists of 12 randomly generated questions.","Quizzes for everyone: from beginner to seasoned pub quiz contestant","Learn new facts to improve your general knowledge"];
+    const detailedReason=["Each quiz consists of 12 randomly generated questions.","A quiz for everyone from beginner to mastermind","Learn new facts to improve your general knowledge"];
     let reasons = document.getElementsByClassName("reasons-images");
 
     for (let j=0; j<3; j++){
