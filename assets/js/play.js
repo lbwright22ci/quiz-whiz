@@ -174,6 +174,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     displayDifficulty(difficultyLevel);
     game.url = `${urlStart}${difficulty[difficultyLevel]}${urlEnd}&token=${game.sessionToken}`;
+  
   }
   /**
    * Collects data from API call to Open Trivia Database

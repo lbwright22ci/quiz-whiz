@@ -28,6 +28,13 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("todays-fact").innerHTML = result.text;
 
     //api does not have an error message specifically associated with the API call.
+    //However, every fact is associated with an ID.  If this is `null` then the API call has
+    //hit an error.
+
+    if(result.id === null){
+      alert("There is an error in generating today's random fact");
+    }
+
   }
 
   todaysFact();
@@ -76,6 +83,12 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("random-fact").innerText = result.text;
     document.getElementById("generate-random").innerText = "New fact!";
     //api does not have an error message specifically associated with the API call.
+    //However, every fact is associated with an ID.  If this is `null` then the API call has
+    //hit an error.
+
+    if(result.id === null){
+      alert("There is an error in generating a random fact");
+    }
   }
 
   /**
