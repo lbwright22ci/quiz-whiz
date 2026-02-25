@@ -359,8 +359,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("end-game-feedback").classList.remove("hide");
 
     document.getElementById("final-score").innerHTML =
-      ` Your final score was ${game.correctAnswers}/12.
-                                    `;
+      ` Your final score was ${game.correctAnswers}/12.`;
 
     if (game.correctAnswers < 4) {
       document.getElementById("feedback-image").innerHTML =
