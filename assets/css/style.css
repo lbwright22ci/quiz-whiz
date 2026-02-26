@@ -461,12 +461,8 @@ h3{
     background-color: var(--background-color);
     box-shadow: 2rem 2rem 2rem var(--highlight-color);
 }
-/* Responsive Styling */
 
-/* Older style small phones which are less than 620px tall short phones */ 
-/* Also applies to landscape orientation of all phones */
-@media  screen and (max-height:620px) {
-}
+/* Responsive Styling */
 
 /* Medium screens: tablets (768px and above)*/
 @media screen and (min-width:768px) {
@@ -517,7 +513,7 @@ h3{
 
 /* Extra large screens: 1200 px and above (laptop)*/
 @media screen and (min-width:1200px) {
-        .question-zone{
+    .question-zone{
         padding-left:4rem;
         padding-right:4rem;
     }
@@ -528,8 +524,4 @@ h3{
     #feedback-comment{
         margin-top:0;
     }
-}
-
-/* Extra extra large screens: 1400 px and above (wide screen laptop and desktop computer screens*/
-@media screen and (min-width:1400px) {
 }
