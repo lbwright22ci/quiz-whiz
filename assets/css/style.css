@@ -390,8 +390,6 @@ h3{
 }
 
 .facts-page-titles:hover{
-
-    /* //text-shadow: 1px 1px 5px var(--highlight-color); */
         color:var(--text-color);
 }
 
